@@ -6,6 +6,11 @@
   </a>
 </p>
 
+## Design
+### DB table 구조
+![DB 구조](./readme-images/db-schema.png)
+[Link](https://dbdiagram.io/d/5da49c13ff5115114db53be8)
+
 ## Author
 
 👤 **Yuk Jisu**
