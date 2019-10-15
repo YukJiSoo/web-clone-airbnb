@@ -1,40 +1,39 @@
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
 import dotenv from 'dotenv';
+
+import typeDefs from './typeDefs';
+import resolvers from './resolvers';
+
+import * as jwtManager from './util/jwt-manager';
 
 // Set config
 dotenv.config();
 
-// Temp datas
-const books = [
-    {
-        title: 'Harry Potter and the Chamber of Secrets',
-        author: 'J.K. Rowling',
-    },
-    {
-        title: 'Jurassic Park',
-        author: 'Michael Crichton',
-    },
-];
+// Set GraphQL Apollo server
+const context = ({ req }) => {
+    const authorizationHeader = req.headers.authorization || '';
+    const token = authorizationHeader.split(' ')[1];
+    const user = jwtManager.isTokenValid(token);
 
-const typeDefs = gql`
-    type Book {
-        title: String
-        author: String
-    }
-
-    type Query {
-        books: [Book]
-    }
-`;
-
-const resolvers = {
-    Query: {
-        books: () => books,
-    },
+    return { user };
 };
 
-// Set GraphQL Apollo server
-const server = new ApolloServer({ typeDefs, resolvers });
+const formatError = err => {
+    console.error('--- GraphQL Error ---');
+    console.error('Path:', err.path);
+    console.error('Message:', err.message);
+    console.error('Code:', err.extensions.code);
+    console.error('Original Error', err.originalError);
+    return err;
+};
+
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context,
+    formatError,
+    debug: false,
+});
 
 server.listen().then(({ url }) => {
     console.log(`🚀  Server ready at ${url}`);
