@@ -1,13 +1,9 @@
 import { ApolloServer } from 'apollo-server';
-import dotenv from 'dotenv';
 
 import typeDefs from './typeDefs';
 import resolvers from './resolvers';
 
 import * as jwtManager from './util/jwt-manager';
-
-// Set config
-dotenv.config();
 
 // Set GraphQL Apollo server
 const context = ({ req }) => {
