@@ -20,7 +20,6 @@ module.exports = {
         database: DB_DEV_DATABASE,
         host: DB_DEV_HOST,
         dialect: 'mysql',
-        operatorsAliases: false,
     },
     test: {
         username: DB_DEV_USER,
@@ -28,7 +27,6 @@ module.exports = {
         database: DB_DEV_DATABASE,
         host: DB_DEV_HOST,
         dialect: 'mysql',
-        operatorsAliases: false,
     },
     production: {
         username: DB_PRODUCTION_USER,
@@ -36,6 +34,5 @@ module.exports = {
         database: DB_PRODUCTION_DATABASE,
         host: DB_PRODUCTION_HOST,
         dialect: 'mysql',
-        operatorsAliases: false,
     },
 };
