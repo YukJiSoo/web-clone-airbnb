@@ -3,6 +3,7 @@ import { ApolloServer } from 'apollo-server';
 import typeDefs from './typeDefs';
 import resolvers from './resolvers';
 
+import model from './database/models';
 import * as jwtManager from './util/jwt-manager';
 
 // Set GraphQL Apollo server
@@ -11,7 +12,7 @@ const context = ({ req }) => {
     const token = authorizationHeader.split(' ')[1];
     const user = jwtManager.isTokenValid(token);
 
-    return { user };
+    return { user, model };
 };
 
 const formatError = err => {
