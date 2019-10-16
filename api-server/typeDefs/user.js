@@ -15,11 +15,18 @@ export default gql`
     }
 
     extend type Mutation {
-        login(email: String!, password: String!): LoginResponse
+        registerUser(data: RegisterInput!): RegisterResponse
+    }
+
+    "Input"
+    input RegisterInput {
+        email: String!
+        password: String!
+        name: String!
     }
 
     "Response"
-    type LoginResponse {
+    type RegisterResponse {
         token: String!
         user: User!
     }
