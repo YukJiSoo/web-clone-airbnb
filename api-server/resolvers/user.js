@@ -1,4 +1,4 @@
-import { ValidationError } from 'apollo-server';
+import { ValidationError, UserInputError } from 'apollo-server';
 
 import * as passwordManager from '../util/password-manager';
 import { tokenCreator } from '../util/jwt-manager';
@@ -33,4 +33,26 @@ const registerUser = async (_, args, context) => {
     }
 };
 
-export const Mutation = { registerUser };
+const joinUser = async (_, args, context) => {
+    const { User } = context.model;
+    const { email, password } = args;
+
+    try {
+        const user = await User.findOne({ where: { email } });
+        if (!user) throw new UserInputError('Is not exist email');
+
+        const isCorrectAccount = await passwordManager.checkCorrectPassword(password, user.password, user.salt);
+        if (!isCorrectAccount) throw new UserInputError('Is not correct password');
+
+        const token = await tokenCreator({ id: user.id, name: user.name });
+
+        return {
+            token,
+            user,
+        };
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const Mutation = { registerUser, joinUser };
