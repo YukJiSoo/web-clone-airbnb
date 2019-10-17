@@ -9,10 +9,15 @@ export default gql`
         starRating: Int
         reviewNum: Int
         imagePath: String
-        roomType: Int
+        roomTypeId: Int
     }
 
     extend type Query {
-        rooms: [Room]
+        rooms: [RoomsResponse]
+    }
+
+    type RoomsResponse {
+        room: Room!
+        roomOption: RoomOption!
     }
 `;
