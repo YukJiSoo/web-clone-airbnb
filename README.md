@@ -6,6 +6,32 @@
   </a>
 </p>
 
+## Server Architecture
+
+![DB 구조](./readme-images/server-architecture.png)
+
+-   3개의 server 생성
+-   사용자는 NginX server로만 요청 가능
+
+### NginX
+
+-   react app을 build한 정적파일 serving
+-   reverse proxy
+-   docker
+
+### GraphQL API Server
+
+-   Apollo library 사용
+-   docker
+
+### DB Server
+
+-   MySQL
+
+## Deploy
+
+http://101.101.162.177:8888/
+
 ## Insatll
 
 1. React + NginX server docker image 생성 후 실행
@@ -13,7 +39,7 @@
 ```
 cd react-app
 docker build -t react-nginx-server .
-docker run -it -p 8888:8888 react-nginx-server
+docker run -it -d -p 8888:8888 react-nginx-server
 ```
 
 2. GraphQL API server docker image 생성 후 실행
@@ -21,7 +47,7 @@ docker run -it -p 8888:8888 react-nginx-server
 ```
 cd api-server
 docker build -t graphql-api-server .
-docker run -it -p 4000:4000 graphql-api-server
+docker run -it -d -p 4000:4000 graphql-api-server
 ```
 
 ## Design
