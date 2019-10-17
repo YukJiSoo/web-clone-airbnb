@@ -1,22 +1,39 @@
-// npx sequelize-cli model:generate --name Room --attributes name:string,price:integer,max_guest:integer,star_rating:integer,review_num:integer,image_path:string
-
+'use strict';
 module.exports = (sequelize, DataTypes) => {
     const Room = sequelize.define(
         'Room',
         {
             name: DataTypes.STRING,
             price: DataTypes.INTEGER,
-            max_guest: DataTypes.INTEGER,
-            star_rating: DataTypes.INTEGER,
-            review_num: DataTypes.INTEGER,
-            image_path: DataTypes.STRING,
+            maxGuest: {
+                type: DataTypes.INTEGER,
+                field: 'max_guest',
+            },
+            starRating: {
+                type: DataTypes.INTEGER,
+                field: 'star_rating',
+            },
+            reviewNum: {
+                type: DataTypes.INTEGER,
+                field: 'review_num',
+            },
+            imagePath: {
+                type: DataTypes.STRING,
+                field: 'image_path',
+            },
         },
-        {},
+        {
+            timestamps: false,
+            underscored: true,
+            freezeTableName: true,
+            tableName: 'rooms',
+        },
     );
     Room.associate = function(models) {
-        Room.belongsTo(models.Room_type);
-        Room.hasOne(models.Room_option);
-        Room.belongsToMany(models.User, { through: 'Bookings' });
+        Room.belongsTo(models.RoomType, { foreignKey: 'roomTypeId', targetKey: 'id' });
+        Room.hasOne(models.RoomOption, { foreignKey: 'id' });
+        Room.belongsToMany(models.User, { through: 'bookings' });
     };
+
     return Room;
 };

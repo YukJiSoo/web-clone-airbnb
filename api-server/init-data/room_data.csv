@@ -1,5 +1,5 @@
-name,price,max_guest,star_rating,review_num,image_path,user_id,room_type
-Clean & quiet apt home by the park,30000,2,3,12,null,2,1
+name,price,max_guest,star_rating,review_num,image_path,user_id,room_type_id
+Clean안녕 & quiet apt home by the park,30000,2,3,12,null,2,1
 Skylit Midtown Castle,40000,4,4,432,null,3,2
 THE VILLAGE OF HARLEM....NEW YORK !,50000,5,5,235,null,2,3
 Cozy Entire Floor of Brownstone,60000,6,1,45,null,3,1

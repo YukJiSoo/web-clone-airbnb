@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('Room_options', {
+        return queryInterface.createTable('room_options', {
             bed: {
                 type: Sequelize.INTEGER,
             },
@@ -23,17 +23,9 @@ module.exports = {
             washer: {
                 type: Sequelize.BOOLEAN,
             },
-            createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE,
-            },
-            updatedAt: {
-                allowNull: false,
-                type: Sequelize.DATE,
-            },
         });
     },
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('Room_options');
+        return queryInterface.dropTable('room_options');
     },
 };

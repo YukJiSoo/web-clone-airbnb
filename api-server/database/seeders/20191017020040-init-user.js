@@ -3,7 +3,7 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.bulkInsert(
-            'Users',
+            'users',
             [
                 {
                     name: '일지수',
@@ -11,8 +11,6 @@ module.exports = {
                     password: 'password',
                     salt: 'salt',
                     is_super_host: false,
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
                 },
                 {
                     name: '이지수',
@@ -20,8 +18,6 @@ module.exports = {
                     password: 'password',
                     salt: 'salt',
                     is_super_host: false,
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
                 },
                 {
                     name: '삼지수',
@@ -29,8 +25,6 @@ module.exports = {
                     password: 'password',
                     salt: 'salt',
                     is_super_host: false,
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
                 },
             ],
             {},
@@ -38,6 +32,6 @@ module.exports = {
     },
 
     down: (queryInterface, Sequelize) => {
-        return queryInterface.bulkDelete('Users', null, {});
+        return queryInterface.bulkDelete('users', null, {});
     },
 };

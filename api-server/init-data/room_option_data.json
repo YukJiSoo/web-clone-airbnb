@@ -7,7 +7,7 @@
         "wifi": true,
         "kitchen": false,
         "washer": false,
-        "room_id": 1
+        "id": 1
     },
     {
         "bed": 2,
@@ -17,7 +17,7 @@
         "wifi": false,
         "kitchen": true,
         "washer": true,
-        "room_id": 2
+        "id": 2
     },
     {
         "bed": 3,
@@ -27,7 +27,7 @@
         "wifi": true,
         "kitchen": false,
         "washer": false,
-        "room_id": 3
+        "id": 3
     },
     {
         "bed": 4,
@@ -37,7 +37,7 @@
         "wifi": false,
         "kitchen": true,
         "washer": false,
-        "room_id": 4
+        "id": 4
     },
     {
         "bed": 1,
@@ -47,7 +47,7 @@
         "wifi": false,
         "kitchen": false,
         "washer": true,
-        "room_id": 5
+        "id": 5
     },
     {
         "bed": 2,
@@ -57,7 +57,7 @@
         "wifi": true,
         "kitchen": true,
         "washer": true,
-        "room_id": 6
+        "id": 6
     },
     {
         "bed": 3,
@@ -67,7 +67,7 @@
         "wifi": true,
         "kitchen": true,
         "washer": false,
-        "room_id": 7
+        "id": 7
     },
     {
         "bed": 4,
@@ -77,7 +77,7 @@
         "wifi": false,
         "kitchen": true,
         "washer": false,
-        "room_id": 8
+        "id": 8
     },
     {
         "bed": 4,
@@ -87,7 +87,7 @@
         "wifi": true,
         "kitchen": false,
         "washer": false,
-        "room_id": 9
+        "id": 9
     },
     {
         "bed": 3,
@@ -97,7 +97,7 @@
         "wifi": false,
         "kitchen": true,
         "washer": true,
-        "room_id": 10
+        "id": 10
     },
     {
         "bed": 2,
@@ -107,7 +107,7 @@
         "wifi": true,
         "kitchen": false,
         "washer": false,
-        "room_id": 11
+        "id": 11
     },
     {
         "bed": 3,
@@ -117,7 +117,7 @@
         "wifi": false,
         "kitchen": true,
         "washer": false,
-        "room_id": 12
+        "id": 12
     },
     {
         "bed": 4,
@@ -127,7 +127,7 @@
         "wifi": false,
         "kitchen": false,
         "washer": true,
-        "room_id": 13
+        "id": 13
     },
     {
         "bed": 2,
@@ -137,7 +137,7 @@
         "wifi": true,
         "kitchen": true,
         "washer": true,
-        "room_id": 14
+        "id": 14
     },
     {
         "bed": 1,
@@ -147,7 +147,7 @@
         "wifi": true,
         "kitchen": true,
         "washer": false,
-        "room_id": 15
+        "id": 15
     },
     {
         "bed": 2,
@@ -157,6 +157,6 @@
         "wifi": false,
         "kitchen": true,
         "washer": false,
-        "room_id": 16
+        "id": 16
     }
 ]

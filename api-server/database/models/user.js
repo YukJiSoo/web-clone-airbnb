@@ -1,5 +1,4 @@
-// npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string,salt:string,is_super_host:boolean
-
+'use strict';
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define(
         'User',
@@ -8,13 +7,22 @@ module.exports = (sequelize, DataTypes) => {
             email: DataTypes.STRING,
             password: DataTypes.STRING,
             salt: DataTypes.STRING,
-            is_super_host: DataTypes.BOOLEAN,
+            isSuperHost: {
+                type: DataTypes.BOOLEAN,
+                field: 'is_super_host',
+            },
         },
-        {},
+        {
+            timestamps: false,
+            underscored: true,
+            freezeTableName: true,
+            tableName: 'users',
+        },
     );
     User.associate = function(models) {
         User.hasMany(models.Room);
-        User.belongsToMany(models.Room, { through: 'Bookings' });
+        User.belongsToMany(models.Room, { through: 'bookings' });
     };
+
     return User;
 };

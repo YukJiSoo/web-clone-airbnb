@@ -1,4 +1,4 @@
-bed,bedroom,bathroom,free_parking,wifi,kitchen,washer,room_id
+bed,bedroom,bathroom,free_parking,wifi,kitchen,washer,id
 1,3,2,FALSE,TRUE,FALSE,FALSE,1
 2,1,2,FALSE,FALSE,TRUE,TRUE,2
 3,3,3,FALSE,TRUE,FALSE,FALSE,3

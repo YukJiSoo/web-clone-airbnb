@@ -1,6 +1,6 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('Bookings', {
+        return queryInterface.createTable('bookings', {
             check_in: {
                 allowNull: false,
                 type: Sequelize.DATE,
@@ -12,14 +12,14 @@ module.exports = {
             user_id: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'Users',
+                    model: 'users',
                     key: 'id',
                 },
             },
             room_id: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'Rooms',
+                    model: 'rooms',
                     key: 'id',
                 },
             },
@@ -28,6 +28,6 @@ module.exports = {
 
     down: (queryInterface, Sequelize) => {
         // remove table
-        return queryInterface.dropTable('Bookings');
+        return queryInterface.dropTable('bookings');
     },
 };
