@@ -1,17 +1,28 @@
 import React from 'react';
 import Style from './style';
 
+const convertOptionDataToStrings = (maxGuest, option) => {
+    const { bed, bedroom, bathroom, freeParking, wifi, kitchen, washer } = option;
+    const optionFirstLine = `인원 ${maxGuest}명 · 침실 ${bedroom}개 · 침대 ${bed}개 · 욕실 ${bathroom}개`;
+    const optionSecondLine = `${freeParking ? '건물 내 무료 주차 ' : ''}${wifi ? '무선 인터넷 ' : ''}${
+        kitchen ? '주방 ' : ''
+    }${washer ? '세탁기 ' : ''}`;
+    return { optionFirstLine, optionSecondLine };
+};
+
 // TODO: Inject real data
-export default () => {
+export default ({ info, option }) => {
+    const { optionFirstLine, optionSecondLine } = convertOptionDataToStrings(info.maxGuest, option);
+
     return (
         <Style>
             <div className="Room-image"></div>
             <div className="Room-Content">
-                <h3>숙소 이름</h3>
-                <p>인원, 침실, 침대, 욕실</p>
-                <p>그외 옵션</p>
+                <h3>{info.name}</h3>
+                <p>{optionFirstLine}</p>
+                <p>{optionSecondLine}</p>
                 <div className="Room-Content-BottomArea">
-                    <span>리뷰개수</span>
+                    <span>{info.reviewNum}</span>
                     <button>예약하기</button>
                 </div>
             </div>
