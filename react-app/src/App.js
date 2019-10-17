@@ -23,9 +23,7 @@ dotenv.config();
 
 const httpLink = createHttpLink({ uri: process.env.REACT_APP_API_URL });
 const authLink = setContext((_, { headers }) => {
-    // TODO
-    // get the authentication token from local storage if it exists
-    // const token = localStorage.getItem('token');
+    // TODO: get real token
     const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IuyCrOyngOyImCIsImlhdCI6MTU3MTMwMzg0OSwiZXhwIjoxNTc5OTQzODQ5LCJpc3MiOiJib29zdC1haXJibmIiLCJzdWIiOiJ1c2VyIn0.shnHbz6gdrtojuSf9u7XRXxD_q2PsDro9tmd60yl3g8`;
     return {
         headers: {
