@@ -30,7 +30,7 @@
 
 ## Deploy
 
-http://101.101.162.177:8888/
+http://101.101.162.177
 
 ## Insatll
 
@@ -39,7 +39,7 @@ http://101.101.162.177:8888/
 ```
 cd react-app
 docker build -t react-nginx-server .
-docker run -it -d -p 8888:8888 react-nginx-server
+docker run -it -d -p 80:80 react-nginx-server
 ```
 
 2. GraphQL API server docker image 생성 후 실행
