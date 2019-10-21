@@ -62,7 +62,9 @@ export default styled.header`
             cursor: pointer;
         }
 
-        button:active {
+        button:active,
+        .isClicked,
+        .isClicked:hover {
             color: white;
             background-color: rgb(255, 90, 95);
             border-color: transparent;

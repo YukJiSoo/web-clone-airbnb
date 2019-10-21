@@ -13,10 +13,13 @@ export default () => {
             <nav>
                 <ul>
                     <li>
-                        <div>
-                            <button onClick={() => setDayButtonClicked(!isDayButtonClicked)}>날짜</button>
-                            {isDayButtonClicked && <Modal />}
-                        </div>
+                        <button
+                            className={isDayButtonClicked ? 'isClicked' : ''}
+                            onClick={() => setDayButtonClicked(!isDayButtonClicked)}
+                        >
+                            날짜
+                        </button>
+                        {isDayButtonClicked && <Modal />}
                     </li>
                     <li>
                         <button>인원</button>
