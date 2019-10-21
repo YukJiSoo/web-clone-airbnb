@@ -5,35 +5,28 @@ import Modal from 'components/Modal';
 import Logo from 'components/Logo';
 
 export default () => {
-    const [isDayButtonClicked, setDayButtonClicked] = useState(false);
+    const buttonInfos = ['날짜', '인원', '숙소 유형', '가격', '필터 추가하기'].map(name => {
+        const [isClicked, setIsClicked] = useState(false);
+        return {
+            name,
+            isClicked,
+            setIsClicked,
+        };
+    });
+    const buttonList = buttonInfos.map((info, index) => (
+        <li key={index}>
+            <button className={info.isClicked ? 'isClicked' : ''} onClick={() => info.setIsClicked(!info.isClicked)}>
+                {info.name}
+            </button>
+            {info.isClicked && <Modal />}
+        </li>
+    ));
 
     return (
         <Style>
             <Logo />
             <nav>
-                <ul>
-                    <li>
-                        <button
-                            className={isDayButtonClicked ? 'isClicked' : ''}
-                            onClick={() => setDayButtonClicked(!isDayButtonClicked)}
-                        >
-                            날짜
-                        </button>
-                        {isDayButtonClicked && <Modal />}
-                    </li>
-                    <li>
-                        <button>인원</button>
-                    </li>
-                    <li>
-                        <button>숙소 유형</button>
-                    </li>
-                    <li>
-                        <button>가격</button>
-                    </li>
-                    <li>
-                        <button>필터 추가하기</button>
-                    </li>
-                </ul>
+                <ul>{buttonList}</ul>
             </nav>
         </Style>
     );
