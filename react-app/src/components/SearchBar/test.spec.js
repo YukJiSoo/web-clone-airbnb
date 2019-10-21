@@ -15,6 +15,8 @@ import SearchBar from './index';
 - [x] 처음 rendering되는 component는 날짜, 인원, 숙소 유형, 가격, 필터 추가하기 버튼을 소유하고 있다.
 - [x] 버튼을 클릭하면 해당 버튼과 관련된 modal이 생성된다.
 - [x] 클릭된 버튼은 나머지 버튼과 다른 배경색, 글자색, 테두리색을 가진다.
+- [] 다른 버튼을 클릭하면 기존에 클릭된 버튼의 색상은 변경된다.
+- [] 다른 버튼을 클릭하면 기존에 클릭된 버튼의 모달은 닫힌다.
 */
 
 describe('SearchBar', () => {
@@ -51,5 +53,20 @@ describe('SearchBar', () => {
         expect(filterByDayButton).toHaveStyle('background-color: rgb(255, 90, 95);');
         expect(filterByDayButton).toHaveStyle('color: white;;');
         expect(filterByDayButton).toHaveStyle('border-color: transparent;');
+    });
+
+    it('다른 버튼을 클릭하면 기존에 클릭된 버튼의 색상은 변경된다.', () => {
+        // Given: 날짜 버튼
+        const { getByText } = render(<SearchBar />);
+        const filterByDayButton = getByText('날짜');
+        const filterByPeopleButton = getByText('인원');
+        fireEvent.click(filterByDayButton);
+
+        // When: 날짜 버튼 클릭
+        fireEvent.click(filterByPeopleButton);
+
+        // Then
+        expect(filterByDayButton).not.toHaveClass('isClicked');
+        expect(filterByPeopleButton).toHaveClass('isClicked');
     });
 });
