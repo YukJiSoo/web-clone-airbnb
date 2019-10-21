@@ -16,7 +16,7 @@ import SearchBar from './index';
 - [x] 버튼을 클릭하면 해당 버튼과 관련된 modal이 생성된다.
 - [x] 클릭된 버튼은 나머지 버튼과 다른 배경색, 글자색, 테두리색을 가진다.
 - [x] 다른 버튼을 클릭하면 기존에 클릭된 버튼의 색상은 변경된다.
-- [] 다른 버튼을 클릭하면 기존에 클릭된 버튼의 모달은 닫힌다.
+- [x] 다른 버튼을 클릭하면 기존에 클릭된 버튼의 모달은 닫힌다.
 */
 
 describe('SearchBar', () => {
@@ -42,7 +42,7 @@ describe('SearchBar', () => {
     });
 
     it('클릭된 버튼은 나머지 버튼과 다른 배경색, 글자색, 테두리색을 가진다.', () => {
-        // Given: 날짜 버튼
+        // Given: 날짜 버튼, 인원 버튼
         const { getByText, getByTestId } = render(<SearchBar />);
         const filterByDayButton = getByText('날짜');
 
@@ -55,18 +55,17 @@ describe('SearchBar', () => {
         expect(filterByDayButton).toHaveStyle('border-color: transparent;');
     });
 
-    it('다른 버튼을 클릭하면 기존에 클릭된 버튼의 색상은 변경된다.', () => {
-        // Given: 날짜 버튼
-        const { getByText } = render(<SearchBar />);
+    it('다른 버튼을 클릭하면 기존에 클릭된 버튼의 모달은 닫힌다.', () => {
+        // Given: 날짜 버튼, 인원 버튼
+        const { getByText, getAllByTestId } = render(<SearchBar />);
         const filterByDayButton = getByText('날짜');
         const filterByPeopleButton = getByText('인원');
-        fireEvent.click(filterByDayButton);
 
         // When: 날짜 버튼 클릭
+        fireEvent.click(filterByDayButton);
         fireEvent.click(filterByPeopleButton);
 
         // Then
-        expect(filterByDayButton).not.toHaveClass('isClicked');
-        expect(filterByPeopleButton).toHaveClass('isClicked');
+        expect(getAllByTestId('modal').length).toBe(1);
     });
 });
