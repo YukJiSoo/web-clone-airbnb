@@ -1,5 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+
 import SearchBar from './index';
 
 /*
@@ -35,5 +37,19 @@ describe('SearchBar', () => {
 
         // Then
         getByTestId('modal');
+    });
+
+    it('클릭된 버튼은 나머지 버튼과 다른 배경색, 글자색, 테두리색을 가진다.', () => {
+        // Given: 날짜 버튼
+        const { getByText, getByTestId } = render(<SearchBar />);
+        const filterByDayButton = getByText('날짜');
+
+        // When: 날짜 버튼 클릭
+        fireEvent.click(filterByDayButton);
+
+        // Then
+        expect(filterByDayButton).toHaveStyle('background-color: rgb(255, 90, 95);');
+        expect(filterByDayButton).toHaveStyle('color: white;;');
+        expect(filterByDayButton).toHaveStyle('border-color: transparent;');
     });
 });
