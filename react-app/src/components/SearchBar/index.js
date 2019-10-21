@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Style from './style';
 
 import Logo from 'components/Logo';
 
 export default () => {
+    const [isDayButtonClicked, setDayButtonClicked] = useState(false);
+
     return (
         <Style>
             <Logo />
             <nav>
                 <ul>
                     <li>
-                        <button>날짜</button>
+                        <div>
+                            <button onClick={() => setDayButtonClicked(!isDayButtonClicked)}>날짜</button>
+                            {isDayButtonClicked && <div data-testid="filter-by-modal" />}
+                        </div>
                     </li>
                     <li>
                         <button>인원</button>

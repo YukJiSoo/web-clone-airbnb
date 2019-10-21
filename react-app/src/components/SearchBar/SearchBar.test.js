@@ -34,6 +34,6 @@ describe('SearchBar', () => {
         fireEvent.click(filterByDayButton);
 
         // Then
-        getByTestId('filter-by-modal');
+        getByTestId('modal');
     });
 });
