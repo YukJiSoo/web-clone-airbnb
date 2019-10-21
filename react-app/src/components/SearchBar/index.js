@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Style from './style';
 
+import Modal from 'components/Modal';
 import Logo from 'components/Logo';
 
 export default () => {
@@ -14,7 +15,7 @@ export default () => {
                     <li>
                         <div>
                             <button onClick={() => setDayButtonClicked(!isDayButtonClicked)}>날짜</button>
-                            {isDayButtonClicked && <div data-testid="filter-by-modal" />}
+                            {isDayButtonClicked && <Modal />}
                         </div>
                     </li>
                     <li>
