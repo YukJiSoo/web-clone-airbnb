@@ -13,9 +13,18 @@ export default () => {
             setIsClicked,
         };
     });
+
+    const filterButtonClicked = (state, setState) => () => {
+        buttonInfos.forEach(button => button.isClicked && button.setIsClicked(false));
+        setState(!state);
+    };
+
     const buttonList = buttonInfos.map((info, index) => (
         <li key={index}>
-            <button className={info.isClicked ? 'isClicked' : ''} onClick={() => info.setIsClicked(!info.isClicked)}>
+            <button
+                className={info.isClicked ? 'isClicked' : ''}
+                onClick={filterButtonClicked(info.isClicked, info.setIsClicked)}
+            >
                 {info.name}
             </button>
             {info.isClicked && <Modal />}
