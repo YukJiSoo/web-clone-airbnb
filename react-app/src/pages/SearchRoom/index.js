@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SearchBar from 'components/SearchBar';
+import SearchBar from 'containers/SearchBar';
 
 import RoomList from 'containers/RoomList';
 
