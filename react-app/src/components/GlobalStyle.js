@@ -1,10 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
 
 export default createGlobalStyle`
-    ${reset};
-
     * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
         box-sizing: boerder-box;
     }
 
