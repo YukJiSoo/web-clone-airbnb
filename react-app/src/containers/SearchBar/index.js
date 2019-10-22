@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Style from './style';
+
+import { SearchRoomContext } from 'pages/SearchRoom';
+import * as RoomAPI from 'graphql/query/room';
 
 import Modal from 'components/Modal';
 import Logo from 'components/Logo';
 import DatePicker from 'components/DatePicker';
-
-const searchInfos = [
-    { id: 'date', name: '날짜', modalBody: <DatePicker /> },
-    { id: 'personnel', name: '인원' },
-    { id: 'roomType', name: '숙소 유형' },
-    { id: 'price', name: '가격' },
-    { id: 'anotherOption', name: '필터 추가하기' },
-];
 
 const SearchButton = ({ name, modalBody, isClicked, setIsClicked, onClick }) => {
     return (
@@ -25,6 +20,20 @@ const SearchButton = ({ name, modalBody, isClicked, setIsClicked, onClick }) => 
 };
 
 export default () => {
+    const setRequest = useContext(SearchRoomContext);
+
+    const searchInfos = [
+        {
+            id: 'date',
+            name: '날짜',
+            modalBody: <DatePicker onSaveButtonHandle={() => setRequest(RoomAPI.GET_ROOMS_FILTERED_BY_DATE)} />,
+        },
+        { id: 'personnel', name: '인원' },
+        { id: 'roomType', name: '숙소 유형' },
+        { id: 'price', name: '가격' },
+        { id: 'anotherOption', name: '필터 추가하기' },
+    ];
+
     const searchStates = searchInfos.map(info => {
         const [isClicked, setIsClicked] = useState(false);
         return {
