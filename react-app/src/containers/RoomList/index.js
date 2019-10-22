@@ -2,12 +2,11 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import * as Style from './style';
-import { GET_ROOMS } from './graphql';
 
 import RoomItem from 'components/RoomItem';
 
-export default () => {
-    const { loading, error, data } = useQuery(GET_ROOMS);
+export default ({ query }) => {
+    const { loading, error, data } = useQuery(query);
     // TODO: 로딩, 에러 view 구현
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error!(</p>;

@@ -13,7 +13,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import dotenv from 'dotenv';
 
 // Import pages
-import SearchRoom from 'pages/SearchRoom';
+import { SearchRoom } from 'pages/SearchRoom';
 
 // Import components
 import GlobalStyle from 'components/GlobalStyle';
