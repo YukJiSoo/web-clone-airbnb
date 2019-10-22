@@ -40,26 +40,29 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
 
-    const createFilterOption = (date, models) => ({
-        model: models.Booking,
-        required: false,
-        where: {
-            [Op.not]: {
-                checkOut: { [Op.gt]: date.checkIn },
-                checkIn: { [Op.lt]: date.checkOut },
-            },
-        },
-    });
-
     Room.findAllByFilter = async filterOptions => {
         const models = require('../models');
 
-        const requestOption = [models.RoomOption];
-        if (filterOptions && filterOptions.date) requestOption.push(createFilterOption(filterOptions.date, models));
+        const joinOption = { model: models.RoomOption };
+        if (filterOptions && filterOptions.date) {
+            const reservedRooomsSQL = sequelize.dialect.QueryGenerator.selectQuery('bookings', {
+                attributes: ['room_id'],
+                where: {
+                    check_out: { [Op.gt]: filterOptions.date.checkIn },
+                    check_in: { [Op.lt]: filterOptions.date.checkOut },
+                },
+            }).slice(0, -1);
+
+            joinOption['where'] = {
+                id: {
+                    [Op.notIn]: sequelize.literal('(' + reservedRooomsSQL + ')'),
+                },
+            };
+        }
 
         try {
             return await Room.findAll({
-                include: requestOption,
+                include: [joinOption],
             });
         } catch (error) {
             throw error;
