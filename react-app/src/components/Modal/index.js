@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Style from './style';
 
-export default () => {
-    return <Style.Modal data-testid="modal"></Style.Modal>;
+export default ({ body }) => {
+    return <Style.Modal data-testid="modal">{body}</Style.Modal>;
 };

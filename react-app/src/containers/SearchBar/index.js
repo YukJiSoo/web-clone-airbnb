@@ -3,23 +3,33 @@ import Style from './style';
 
 import Modal from 'components/Modal';
 import Logo from 'components/Logo';
+import DatePicker from 'components/DatePicker';
+
+const searchInfos = [
+    { name: '날짜', modalBody: <DatePicker /> },
+    { name: '인원' },
+    { name: '숙소 유형' },
+    { name: '가격' },
+    { name: '필터 추가하기' },
+];
 
 export default () => {
-    const buttonInfos = ['날짜', '인원', '숙소 유형', '가격', '필터 추가하기'].map(name => {
+    const searchStates = searchInfos.map(info => {
         const [isClicked, setIsClicked] = useState(false);
         return {
-            name,
+            name: info.name,
+            modalBody: info.modalBody,
             isClicked,
             setIsClicked,
         };
     });
 
     const filterButtonClicked = (state, setState) => () => {
-        buttonInfos.forEach(button => button.isClicked && button.setIsClicked(false));
+        searchStates.forEach(button => button.isClicked && button.setIsClicked(false));
         setState(!state);
     };
 
-    const buttonList = buttonInfos.map((info, index) => (
+    const buttonList = searchStates.map((info, index) => (
         <li key={index}>
             <button
                 className={info.isClicked ? 'isClicked' : ''}
@@ -27,14 +37,14 @@ export default () => {
             >
                 {info.name}
             </button>
-            {info.isClicked && <Modal />}
+            {info.isClicked && <Modal body={info.modalBody} />}
         </li>
     ));
 
     return (
         <Style>
             <Logo />
-            <nav>
+            <nav className="Search-Bar">
                 <ul>{buttonList}</ul>
             </nav>
         </Style>
