@@ -21,7 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     );
     User.associate = function(models) {
         User.hasMany(models.Room);
-        User.belongsToMany(models.Room, { through: 'bookings' });
+        User.hasMany(models.Booking, {
+            foreignKey: 'user_id',
+            onDelete: 'cascade',
+            onUpdate: 'cascade',
+        });
     };
 
     return User;

@@ -32,7 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     Room.associate = function(models) {
         Room.belongsTo(models.RoomType, { foreignKey: 'roomTypeId', targetKey: 'id' });
         Room.hasOne(models.RoomOption, { foreignKey: 'id' });
-        Room.belongsToMany(models.User, { through: 'bookings' });
+        Room.hasMany(models.Booking, {
+            foreignKey: 'room_id',
+            onDelete: 'cascade',
+            onUpdate: 'cascade',
+        });
     };
 
     return Room;
