@@ -13,9 +13,20 @@ export default gql`
     }
 
     extend type Query {
-        rooms: [RoomsResponse]
+        rooms(filterOptions: RoomsFilteringOptionInput): [RoomsResponse]
     }
 
+    "Input"
+    input RoomsFilteringOptionInput {
+        date: DateFilterInput
+    }
+
+    input DateFilterInput {
+        checkIn: String!
+        checkOut: String!
+    }
+
+    "Response"
     type RoomsResponse {
         room: Room!
         roomOption: RoomOption!

@@ -1,4 +1,5 @@
-'use strict';
+const Op = require('sequelize').Op;
+
 module.exports = (sequelize, DataTypes) => {
     const Room = sequelize.define(
         'Room',
@@ -37,6 +38,32 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'cascade',
             onUpdate: 'cascade',
         });
+    };
+
+    const createFilterOption = (date, models) => ({
+        model: models.Booking,
+        required: false,
+        where: {
+            [Op.not]: {
+                checkOut: { [Op.gt]: date.checkIn },
+                checkIn: { [Op.lt]: date.checkOut },
+            },
+        },
+    });
+
+    Room.findAllByFilter = async filterOptions => {
+        const models = require('../models');
+
+        const requestOption = [models.RoomOption];
+        if (filterOptions && filterOptions.date) requestOption.push(createFilterOption(filterOptions.date, models));
+
+        try {
+            return await Room.findAll({
+                include: requestOption,
+            });
+        } catch (error) {
+            throw error;
+        }
     };
 
     return Room;
