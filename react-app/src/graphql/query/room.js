@@ -27,16 +27,36 @@ export const GET_ROOMS = gql`
     }
 `;
 
-// TODO: 날짜 필터링 요청 쿼리
 export const GET_ROOMS_FILTERED_BY_DATE = gql`
-    query {
-        rooms {
+    query RoomsFilteredByDate($filterOptions: RoomsFilteringOptionInput) {
+        rooms(filterOptions: $filterOptions) {
             room {
                 id
+                name
+                price
+                maxGuest
+                starRating
+                reviewNum
+                imagePath
+                roomTypeId
             }
             roomOption {
                 id
+                bed
+                bedroom
+                bathroom
+                freeParking
+                wifi
+                kitchen
+                washer
             }
         }
     }
 `;
+
+export const createFilterOption = ({ startDate, endDate }) => ({
+    date: {
+        checkIn: startDate.format('YYYY[-]MM[-]DD'),
+        checkOut: endDate.format('YYYY[-]MM[-]DD'),
+    },
+});

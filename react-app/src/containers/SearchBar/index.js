@@ -26,7 +26,16 @@ export default () => {
         {
             id: 'date',
             name: '날짜',
-            modalBody: <DatePicker requestToServer={() => setRequest(RoomAPI.GET_ROOMS_FILTERED_BY_DATE)} />,
+            modalBody: (
+                <DatePicker
+                    requestToServer={(startDate, endDate) =>
+                        setRequest({
+                            query: RoomAPI.GET_ROOMS_FILTERED_BY_DATE,
+                            filterOptions: RoomAPI.createFilterOption({ startDate, endDate }),
+                        })
+                    }
+                />
+            ),
         },
         { id: 'personnel', name: '인원' },
         { id: 'roomType', name: '숙소 유형' },

@@ -22,7 +22,7 @@ export default ({ requestToServer }) => {
     };
 
     const saveButtonHandler = (startDate, endDate) => () => {
-        if (startDate && endDate) requestToServer();
+        if (startDate && endDate) requestToServer(startDate, endDate);
     };
 
     return (

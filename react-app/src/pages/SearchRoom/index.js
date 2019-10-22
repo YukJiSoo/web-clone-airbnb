@@ -7,12 +7,12 @@ import RoomList from 'containers/RoomList';
 export const SearchRoomContext = createContext();
 
 export const SearchRoom = () => {
-    const [request, setRequest] = useState(RoomAPI.GET_ROOMS);
+    const [request, setRequest] = useState({ query: RoomAPI.GET_ROOMS, filterOptions: {} });
 
     return (
         <SearchRoomContext.Provider value={setRequest}>
             <SearchBar />
-            <RoomList query={request} />
+            <RoomList query={request.query} filterOptions={request.filterOptions} />
         </SearchRoomContext.Provider>
     );
 };
