@@ -13,6 +13,17 @@ const searchInfos = [
     { id: 'anotherOption', name: '필터 추가하기' },
 ];
 
+const SearchButton = ({ name, modalBody, isClicked, setIsClicked, onClick }) => {
+    return (
+        <div>
+            <button className={isClicked ? 'isClicked' : ''} onClick={onClick(isClicked, setIsClicked)}>
+                {name}
+            </button>
+            {isClicked && <Modal body={modalBody} />}
+        </div>
+    );
+};
+
 export default () => {
     const searchStates = searchInfos.map(info => {
         const [isClicked, setIsClicked] = useState(false);
@@ -31,13 +42,13 @@ export default () => {
 
     const buttonList = searchStates.map((info, index) => (
         <li key={index}>
-            <button
-                className={info.isClicked ? 'isClicked' : ''}
-                onClick={filterButtonClicked(info.isClicked, info.setIsClicked)}
-            >
-                {info.name}
-            </button>
-            {info.isClicked && <Modal modalId={info.id} body={info.modalBody} />}
+            <SearchButton
+                name={info.name}
+                modalBody={info.modalBody}
+                isClicked={info.isClicked}
+                setIsClicked={info.setIsClicked}
+                onClick={filterButtonClicked}
+            />
         </li>
     ));
 
