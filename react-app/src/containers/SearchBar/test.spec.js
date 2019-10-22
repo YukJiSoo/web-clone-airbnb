@@ -31,19 +31,19 @@ describe('SearchBar', () => {
 
     it('버튼을 클릭하면 해당 버튼과 관련된 modal이 생성된다.', () => {
         // Given: 날짜 버튼
-        const { getByText, getByTestId } = render(<SearchBar />);
+        const { getByText, getByRole } = render(<SearchBar />);
         const filterByDayButton = getByText('날짜');
 
         // When: 날짜 버튼 클릭
         fireEvent.click(filterByDayButton);
 
         // Then
-        getByTestId('modal');
+        getByRole('dialog');
     });
 
     it('클릭된 버튼은 나머지 버튼과 다른 배경색, 글자색, 테두리색을 가진다.', () => {
         // Given: 날짜 버튼, 인원 버튼
-        const { getByText, getByTestId } = render(<SearchBar />);
+        const { getByText } = render(<SearchBar />);
         const filterByDayButton = getByText('날짜');
 
         // When: 날짜 버튼 클릭
@@ -57,7 +57,7 @@ describe('SearchBar', () => {
 
     it('다른 버튼을 클릭하면 기존에 클릭된 버튼의 모달은 닫힌다.', () => {
         // Given: 날짜 버튼, 인원 버튼
-        const { getByText, getAllByTestId } = render(<SearchBar />);
+        const { getByText, getAllByRole } = render(<SearchBar />);
         const filterByDayButton = getByText('날짜');
         const filterByPeopleButton = getByText('인원');
 
@@ -66,6 +66,6 @@ describe('SearchBar', () => {
         fireEvent.click(filterByPeopleButton);
 
         // Then
-        expect(getAllByTestId('modal').length).toBe(1);
+        expect(getAllByRole('dialog').length).toBe(1);
     });
 });

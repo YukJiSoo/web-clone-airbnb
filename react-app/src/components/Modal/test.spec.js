@@ -18,8 +18,8 @@ import Modal from './index';
 describe('Modal', () => {
     it('버튼 밑에 일정한 간격을 두고 모달이 고정되어 있다. 모달의 기본 padding은 2rem이다.', () => {
         // Given
-        const { getByTestId } = render(<Modal />);
-        const modal = getByTestId('modal');
+        const { getByRole } = render(<Modal />);
+        const modal = getByRole('dialog');
 
         // Then
         expect(modal).toHaveStyle('position: absolute;');
@@ -29,8 +29,8 @@ describe('Modal', () => {
 
     it('배경이 흰색이다.', () => {
         // Given
-        const { getByTestId } = render(<Modal />);
-        const modal = getByTestId('modal');
+        const { getByRole } = render(<Modal />);
+        const modal = getByRole('dialog');
 
         // Then
         expect(modal).toHaveStyle('background-color: white;');

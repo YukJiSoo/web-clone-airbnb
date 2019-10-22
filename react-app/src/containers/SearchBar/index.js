@@ -6,11 +6,11 @@ import Logo from 'components/Logo';
 import DatePicker from 'components/DatePicker';
 
 const searchInfos = [
-    { name: '날짜', modalBody: <DatePicker /> },
-    { name: '인원' },
-    { name: '숙소 유형' },
-    { name: '가격' },
-    { name: '필터 추가하기' },
+    { id: 'date', name: '날짜', modalBody: <DatePicker /> },
+    { id: 'personnel', name: '인원' },
+    { id: 'roomType', name: '숙소 유형' },
+    { id: 'price', name: '가격' },
+    { id: 'anotherOption', name: '필터 추가하기' },
 ];
 
 export default () => {
@@ -37,7 +37,7 @@ export default () => {
             >
                 {info.name}
             </button>
-            {info.isClicked && <Modal body={info.modalBody} />}
+            {info.isClicked && <Modal modalId={info.id} body={info.modalBody} />}
         </li>
     ));
 
