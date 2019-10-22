@@ -15,7 +15,7 @@ export default styled.header`
         box-shadow: 0 0 2px 0 lightgray;
     }
 
-    svg {
+    .logo {
         height: 32px;
         width: 32px;
         display: block;
@@ -23,17 +23,16 @@ export default styled.header`
         padding: 1rem;
     }
 
-    nav {
+    .Search-Bar {
         padding-right: 1rem;
     }
 
-    nav ul {
+    .Search-Bar ul {
         padding: 0;
+        list-style: none;
     }
 
-    nav ul li {
-        font-weight: normal;
-        font-size: 1.2rem;
+    .Search-Bar > ul > li {
         float: left;
 
         padding: 0 10px;
@@ -45,6 +44,7 @@ export default styled.header`
             padding: 0 1.25rem;
 
             border-radius: 1.25rem;
+            border: solid 1px rgb(255, 90, 95);
 
             background-color: white;
 
@@ -56,9 +56,10 @@ export default styled.header`
         }
 
         button:hover {
-            background-color: lightgray;
+            background-color: rgb(255, 90, 95);
             border-color: transparent;
 
+            color: white;
             cursor: pointer;
         }
 
