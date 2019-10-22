@@ -26,3 +26,17 @@ export const GET_ROOMS = gql`
         }
     }
 `;
+
+// TODO: 날짜 필터링 요청 쿼리
+export const GET_ROOMS_FILTERED_BY_DATE = gql`
+    query {
+        rooms {
+            room {
+                id
+            }
+            roomOption {
+                id
+            }
+        }
+    }
+`;
