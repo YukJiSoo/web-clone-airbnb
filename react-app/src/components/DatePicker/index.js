@@ -6,7 +6,7 @@ import { DayPickerRangeController } from 'react-dates';
 
 import Style from './style';
 
-export default ({ onSaveButtonHandle }) => {
+export default ({ requestToServer }) => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [focusedInput, setFocusedInput] = useState('startDate');
@@ -21,6 +21,10 @@ export default ({ onSaveButtonHandle }) => {
         else setFocusedInput(focusedInput);
     };
 
+    const saveButtonHandler = (startDate, endDate) => () => {
+        if (startDate && endDate) requestToServer();
+    };
+
     return (
         <Style>
             <DayPickerRangeController
@@ -32,7 +36,7 @@ export default ({ onSaveButtonHandle }) => {
                 hideKeyboardShortcutsPanel={true}
                 numberOfMonths={2}
             />
-            <button onClick={onSaveButtonHandle}>저장</button>
+            <button onClick={saveButtonHandler(startDate, endDate)}>저장</button>
         </Style>
     );
 };
