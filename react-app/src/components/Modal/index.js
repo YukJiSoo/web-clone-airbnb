@@ -1,9 +1,9 @@
 import React from 'react';
 import * as Style from './style';
 
-export default ({ body, modalId }) => {
+export default ({ body }) => {
     return (
-        <Style.Modal role="dialog" id={modalId}>
+        <Style.Modal className="modal" role="dialog">
             {body}
         </Style.Modal>
     );

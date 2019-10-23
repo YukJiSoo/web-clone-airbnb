@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 export const Modal = styled.div`
     && {
-        position: absolute;
-        top: 5rem;
-
         padding: 2rem;
 
         background-color: white;

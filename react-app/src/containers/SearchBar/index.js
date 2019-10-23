@@ -5,7 +5,10 @@ import { SearchRoomContext } from 'pages/SearchRoom';
 
 import SearchButton from './SearchButton';
 import Logo from 'components/Logo';
+import Modal from 'components/Modal';
 import { DateFilter } from './ModalBody';
+
+import { isMobile } from 'Constants';
 
 export default () => {
     const setRequest = useContext(SearchRoomContext);
@@ -59,6 +62,7 @@ export default () => {
             <nav className="Search-Bar">
                 <ul>{buttonList}</ul>
             </nav>
+            {isMobile() && searchStates.map(info => info.isClicked && <Modal body={info.modalBody} />)}
         </Style>
     );
 };

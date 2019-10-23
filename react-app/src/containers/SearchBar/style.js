@@ -13,6 +13,11 @@ export default styled.header`
         background-color: white;
 
         box-shadow: 0 0 2px 0 lightgray;
+
+        .modal {
+            position: absolute;
+            top: 5rem;
+        }
     }
 
     .logo {
@@ -69,6 +74,30 @@ export default styled.header`
             color: white;
             background-color: var(--primary-basic-color);
             border-color: transparent;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        && {
+            flex-direction: column;
+            .modal {
+                position: static;
+
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        .logo {
+            height: 60px;
+            width: 60px;
+            display: block;
+            fill: var(--primary-basic-color);
+            padding: 1rem;
+        }
+
+        .Search-Bar {
+            padding: 1rem;
         }
     }
 `;
