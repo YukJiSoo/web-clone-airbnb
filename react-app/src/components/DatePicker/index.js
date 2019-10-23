@@ -17,9 +17,7 @@ export default ({ requestToServer, datePicked, deleteButtonHandle, localeLanguag
     const [focusedInput, setFocusedInput] = useState('startDate');
 
     const onDatesChange = ({ startDate, endDate }) => {
-        const startDateString = startDate.format('M[월]D[일]');
-        const endDateString = endDate ? endDate.format('M[월]D[일]') : '체크아웃';
-        datePicked(`${startDateString} - ${endDateString}`);
+        datePicked(startDate, endDate);
 
         setStartDate(startDate);
         setEndDate(endDate);

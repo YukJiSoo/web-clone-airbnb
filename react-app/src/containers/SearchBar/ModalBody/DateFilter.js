@@ -12,7 +12,11 @@ export default ({ setRequest, setButtonName, setIsClicked }) => (
             });
             setIsClicked(false);
         }}
-        datePicked={setButtonName}
+        datePicked={(startDate, endDate) => {
+            const startDateString = startDate.format('M[월]D[일]');
+            const endDateString = endDate ? endDate.format('M[월]D[일]') : '체크아웃';
+            setButtonName(`${startDateString} - ${endDateString}`);
+        }}
         deleteButtonHandle={() => {
             setButtonName('날짜');
             setIsClicked(false);
