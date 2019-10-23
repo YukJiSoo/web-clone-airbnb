@@ -9,7 +9,7 @@ import 'moment/min/locales';
 
 import Style from './style';
 
-export default ({ requestToServer, datePicked, localeLanguage }) => {
+export default ({ requestToServer, datePicked, deleteButtonHandle, localeLanguage }) => {
     moment.locale(localeLanguage);
 
     const [startDate, setStartDate] = useState(null);
@@ -47,7 +47,8 @@ export default ({ requestToServer, datePicked, localeLanguage }) => {
                 isOutsideRange={day => day.isSameOrBefore()}
                 monthFormat="YYYY[년] MM[월]"
             />
-            <button onClick={saveButtonHandler(startDate, endDate)}>저장</button>
+            <a onClick={deleteButtonHandle}>삭제</a>
+            <a onClick={saveButtonHandler(startDate, endDate)}>저장</a>
         </Style>
     );
 };

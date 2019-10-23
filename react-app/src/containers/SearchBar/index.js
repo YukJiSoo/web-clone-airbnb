@@ -36,6 +36,10 @@ export default () => {
                         setIsClicked(false);
                     }}
                     datePicked={setButtonName}
+                    deleteButtonHandle={() => {
+                        setButtonName('날짜');
+                        setIsClicked(false);
+                    }}
                     localeLanguage="ko"
                 />
             ),
