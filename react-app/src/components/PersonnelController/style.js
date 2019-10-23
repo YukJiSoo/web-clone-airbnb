@@ -33,13 +33,12 @@ export const ItemNameWrapper = styled.div`
 
 export const ControllButtonWrapper = styled.div`
     && {
+        width: 8rem;
+
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-
-        span {
-            margin: 0 0.8rem;
-        }
 
         button {
             width: 2.4rem;
@@ -57,13 +56,7 @@ export const ControllButtonWrapper = styled.div`
             outline: none;
         }
 
-        button:hover {
-            color: white;
-            background-color: var(--primary-basic-color);
-        }
-
-        .isNonClickable,
-        .isNonClickable:hover {
+        .isNonClickable {
             color: var(--primary-light-color);
             border: 2px solid var(--primary-light-color);
             cursor: not-allowed;
