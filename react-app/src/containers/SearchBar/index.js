@@ -36,6 +36,7 @@ export default () => {
                         setIsClicked(false);
                     }}
                     datePicked={setButtonName}
+                    localeLanguage="ko"
                 />
             ),
         },
