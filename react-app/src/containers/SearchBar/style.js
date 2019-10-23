@@ -80,9 +80,12 @@ export default styled.header`
     @media only screen and (max-width: 800px) {
         && {
             flex-direction: column;
+
             .modal {
                 position: static;
+            }
 
+            .modal-dialog {
                 border-radius: 0;
                 box-shadow: none;
             }
