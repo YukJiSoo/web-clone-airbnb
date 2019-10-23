@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Modal = styled.div`
+export const Modal = styled.div``;
+
+export const ModalDialog = styled.div`
     && {
         padding: 2rem;
 
