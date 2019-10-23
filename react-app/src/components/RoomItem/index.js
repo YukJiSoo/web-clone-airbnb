@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Style from './style';
-import Modal from 'components/Modal';
 
 const convertOptionDataToStrings = (maxGuest, option) => {
     const { bed, bedroom, bathroom, freeParking, wifi, kitchen, washer } = option;
@@ -11,9 +10,7 @@ const convertOptionDataToStrings = (maxGuest, option) => {
     return { optionFirstLine, optionSecondLine };
 };
 
-// TODO: Inject real data
-export default ({ info, option }) => {
-    const [isReserveButtonClicked, setIsReserveButtonClicked] = useState(false);
+export default ({ info, option, reserveButtonHandle }) => {
     const { optionFirstLine, optionSecondLine } = convertOptionDataToStrings(info.maxGuest, option);
 
     return (
@@ -25,10 +22,9 @@ export default ({ info, option }) => {
                 <p>{optionSecondLine}</p>
                 <div className="Room-Content-BottomArea">
                     <span>{info.reviewNum}</span>
-                    <button onClick={() => setIsReserveButtonClicked(!isReserveButtonClicked)}>예약하기</button>
+                    <button onClick={() => reserveButtonHandle({ roomId: info.id })}>예약하기</button>
                 </div>
             </div>
-            {isReserveButtonClicked && <Modal />}
         </Style>
     );
 };
