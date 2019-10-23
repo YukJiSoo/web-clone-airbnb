@@ -13,6 +13,18 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.DATE,
                 field: 'check_out',
             },
+            adult: {
+                allowNull: false,
+                type: DataTypes.INTEGER,
+            },
+            children: {
+                allowNull: false,
+                type: DataTypes.INTEGER,
+            },
+            infant: {
+                allowNull: false,
+                type: DataTypes.INTEGER,
+            },
         },
         {
             timestamps: false,

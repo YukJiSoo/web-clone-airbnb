@@ -15,6 +15,18 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE,
             },
+            adult: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+            },
+            children: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+            },
+            infant: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+            },
             user_id: {
                 type: Sequelize.INTEGER,
                 references: {
