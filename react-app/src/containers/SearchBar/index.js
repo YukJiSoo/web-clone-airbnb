@@ -26,7 +26,7 @@ export default () => {
         {
             id: 'date',
             name: '날짜',
-            modalBody: (
+            modalBody: setButtonName => (
                 <DatePicker
                     requestToServer={(startDate, endDate) =>
                         setRequest({
@@ -34,6 +34,7 @@ export default () => {
                             filterOptions: RoomAPI.createFilterOption({ startDate, endDate }),
                         })
                     }
+                    datePicked={setButtonName}
                 />
             ),
         },
@@ -45,9 +46,11 @@ export default () => {
 
     const searchStates = searchInfos.map(info => {
         const [isClicked, setIsClicked] = useState(false);
+        const [buttonName, setButtonName] = useState(info.name);
+
         return {
-            name: info.name,
-            modalBody: info.modalBody,
+            name: buttonName,
+            modalBody: info.modalBody && info.modalBody(setButtonName),
             isClicked,
             setIsClicked,
         };
