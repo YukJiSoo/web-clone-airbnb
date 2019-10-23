@@ -42,7 +42,12 @@ export default ({ query, filterOptions }) => {
             </Style.Section>
             {reserveButtonState.isClicked && (
                 <Modal
-                    body={<ReservationModalBody room={getRoomById(reserveButtonState.roomId)} />}
+                    body={
+                        <ReservationModalBody
+                            room={getRoomById(reserveButtonState.roomId)}
+                            filterOptions={filterOptions}
+                        />
+                    }
                     clickOutOfModalAreaHandle={clickOutOfModalAreaHandle}
                 />
             )}
