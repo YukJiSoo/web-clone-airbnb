@@ -1,4 +1,5 @@
-'use strict';
+const Op = require('sequelize').Op;
+
 module.exports = (sequelize, DataTypes) => {
     const Booking = sequelize.define(
         'Booking',
@@ -33,6 +34,27 @@ module.exports = (sequelize, DataTypes) => {
             tableName: 'bookings',
         },
     );
+
+    Booking.registerNewBooking = async ({ userId, roomId, date, personnel }) => {
+        console.log('userId, roomId, date, personnel');
+        console.log(userId, roomId, date, personnel);
+        try {
+            const { checkIn, checkOut } = date;
+            const { adult, children, infant } = personnel;
+            const [_, created] = await Booking.findOrCreate({
+                where: {
+                    check_out: { [Op.gt]: checkIn },
+                    check_in: { [Op.lt]: checkOut },
+                    room_id: roomId,
+                },
+                defaults: { user_id: userId, room_id: roomId, checkIn, checkOut, adult, children, infant },
+            });
+
+            return created;
+        } catch (error) {
+            throw error;
+        }
+    };
 
     return Booking;
 };
