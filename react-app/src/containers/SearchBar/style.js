@@ -42,7 +42,7 @@ export default styled.header`
 
         padding: 0 10px;
 
-        button {
+        .Search-Button {
             width: 100%;
             height: 2.5rem;
 
@@ -61,7 +61,7 @@ export default styled.header`
             cursor: pointer;
         }
 
-        button:hover {
+        .Search-Button:hover {
             background-color: var(--primary-light-color);
             border-color: transparent;
 
@@ -69,7 +69,7 @@ export default styled.header`
             cursor: pointer;
         }
 
-        button:active,
+        .Search-Button:active,
         .isClicked {
             color: white;
             background-color: var(--primary-basic-color);
