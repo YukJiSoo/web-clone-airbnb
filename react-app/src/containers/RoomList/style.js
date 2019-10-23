@@ -66,13 +66,17 @@ export const ReservationModalBody = styled.div`
         color: white;
 
         border-radius: 0.3rem;
+
+        outline: none;
+        cursor: pointer;
     }
 
     input {
-        padding: 0.8rem;
+        padding: 0.7rem;
         margin-top: 0.5rem;
 
         border: 1px solid rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
     }
 
     .Price-Wrapper {
@@ -87,7 +91,52 @@ export const ReservationModalBody = styled.div`
     small {
         margin-top: 1rem;
 
+        color: red;
         font-size: 0.7rem;
         text-align: center;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    .Text-Center {
+        width: 100%;
+        font-weight: 500;
+        color: var(--primary-light-color);
+
+        text-align: center;
+    }
+
+    .Non-Clickable {
+        background-color: lightgray;
+        cursor: not-allowed;
+    }
+`;
+
+export const DateWrapper = styled.div`
+    && {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .Date-Arrow {
+        display: block;
+
+        padding: 0 1rem;
+        padding-top: 0.5rem;
+
+        height: 47px;
+        line-height: 47px;
+
+        text-align: center;
+
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    .Date-Input {
+        width: 100%;
     }
 `;
