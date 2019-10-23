@@ -7,7 +7,7 @@ import { DayPickerRangeController } from 'react-dates';
 import moment from 'moment';
 import 'moment/min/locales';
 
-import Style from './style';
+import * as Style from './style';
 
 export default ({ requestToServer, datePicked, deleteButtonHandle, localeLanguage }) => {
     moment.locale(localeLanguage);
@@ -33,7 +33,7 @@ export default ({ requestToServer, datePicked, deleteButtonHandle, localeLanguag
     };
 
     return (
-        <Style>
+        <Style.DatePicker>
             <DayPickerRangeController
                 startDate={startDate}
                 endDate={endDate}
@@ -45,8 +45,12 @@ export default ({ requestToServer, datePicked, deleteButtonHandle, localeLanguag
                 isOutsideRange={day => day.isSameOrBefore()}
                 monthFormat="YYYY[년] MM[월]"
             />
-            <a onClick={deleteButtonHandle}>삭제</a>
-            <a onClick={saveButtonHandler(startDate, endDate)}>저장</a>
-        </Style>
+            <Style.DatePickerButtonWrapper>
+                <a onClick={deleteButtonHandle}>삭제</a>
+                <a className="Save-Button" onClick={saveButtonHandler(startDate, endDate)}>
+                    저장
+                </a>
+            </Style.DatePickerButtonWrapper>
+        </Style.DatePicker>
     );
 };
