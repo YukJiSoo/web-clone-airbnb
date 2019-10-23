@@ -28,6 +28,10 @@ export default ({ query, filterOptions }) => {
         return data.rooms.filter(({ room }) => room.id === roomId)[0].room;
     };
 
+    const clickOutOfModalAreaHandle = e => {
+        if (e.target.classList.contains('modal')) setReserveButtonState({ isClicked: false, roomId: null });
+    };
+
     return (
         <Style.Main>
             <Style.Section>
@@ -37,7 +41,10 @@ export default ({ query, filterOptions }) => {
                 ))}
             </Style.Section>
             {reserveButtonState.isClicked && (
-                <Modal body={<ReservationModalBody room={getRoomById(reserveButtonState.roomId)} />} />
+                <Modal
+                    body={<ReservationModalBody room={getRoomById(reserveButtonState.roomId)} />}
+                    clickOutOfModalAreaHandle={clickOutOfModalAreaHandle}
+                />
             )}
         </Style.Main>
     );
