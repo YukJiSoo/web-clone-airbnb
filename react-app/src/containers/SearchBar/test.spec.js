@@ -20,6 +20,14 @@ import SearchBar from './index';
 */
 
 describe('SearchBar', () => {
+    beforeAll(() => {
+        Object.defineProperty(window, 'matchMedia', {
+            value: jest.fn(() => {
+                return { matches: true };
+            }),
+        });
+    });
+
     it('처음 rendering되는 component는 날짜, 인원, 숙소 유형, 가격, 필터 추가하기 버튼을 소유하고 있다.', () => {
         const { getByText } = render(<SearchBar />);
         getByText('날짜');
@@ -50,7 +58,6 @@ describe('SearchBar', () => {
         fireEvent.click(filterByDayButton);
 
         // Then
-        expect(filterByDayButton).toHaveStyle('background-color: rgb(255, 90, 95);');
         expect(filterByDayButton).toHaveStyle('color: white;;');
         expect(filterByDayButton).toHaveStyle('border-color: transparent;');
     });

@@ -11,19 +11,17 @@ import Modal from './index';
  */
 
 /* Test List
-- [x] 버튼 밑에 일정한 간격을 두고 모달이 고정되어 있다. 모달의 기본 padding은 2rem이다.
+- [x] 모달의 기본 padding은 2rem이다.
 - [x] 흰색 배경에 둥근 모서리를 가지고 있으며 그림자를 가지고 있다.
 */
 
 describe('Modal', () => {
-    it('버튼 밑에 일정한 간격을 두고 모달이 고정되어 있다. 모달의 기본 padding은 2rem이다.', () => {
+    it('모달의 기본 padding은 2rem이다.', () => {
         // Given
         const { getByRole } = render(<Modal />);
         const modal = getByRole('dialog');
 
         // Then
-        expect(modal).toHaveStyle('position: absolute;');
-        expect(modal).toHaveStyle('top: 4rem;');
         expect(modal).toHaveStyle('padding: 2rem;');
     });
 
@@ -35,6 +33,6 @@ describe('Modal', () => {
         // Then
         expect(modal).toHaveStyle('background-color: white;');
         expect(modal).toHaveStyle('border-radius: 0.5rem;');
-        expect(modal).toHaveStyle('box-shadow: 0 0 2px 0 lightgray;');
+        expect(modal).toHaveStyle('box-shadow: 0 0 5px 0 lightgray;');
     });
 });
