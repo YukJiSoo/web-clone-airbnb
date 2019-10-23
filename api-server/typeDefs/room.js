@@ -16,6 +16,10 @@ export default gql`
         rooms(filterOptions: RoomsFilteringOptionInput): [RoomsResponse]
     }
 
+    extend type Mutation {
+        reserveRoom(data: ReserveRoomInput): ReserveRoomResponse
+    }
+
     "Input"
     input RoomsFilteringOptionInput {
         date: DateFilterInput
@@ -26,9 +30,25 @@ export default gql`
         checkOut: String!
     }
 
+    input ReserveRoomInput {
+        roomId: ID!
+        date: DateFilterInput!
+        personnel: PersonnelFilterInput!
+    }
+
+    input PersonnelFilterInput {
+        adult: Int!
+        children: Int!
+        infant: Int!
+    }
+
     "Response"
     type RoomsResponse {
         room: Room!
         roomOption: RoomOption!
+    }
+
+    type ReserveRoomResponse {
+        success: Boolean!
     }
 `;
