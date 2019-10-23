@@ -2,22 +2,10 @@ import React, { useState, useContext } from 'react';
 import Style from './style';
 
 import { SearchRoomContext } from 'pages/SearchRoom';
-import * as RoomAPI from 'graphql/query/room';
 
-import Modal from 'components/Modal';
+import SearchButton from './SearchButton';
 import Logo from 'components/Logo';
-import DatePicker from 'components/DatePicker';
-
-const SearchButton = ({ name, modalBody, isClicked, setIsClicked, onClick }) => {
-    return (
-        <div>
-            <button className={isClicked ? 'isClicked' : ''} onClick={onClick(isClicked, setIsClicked)}>
-                {name}
-            </button>
-            {isClicked && <Modal body={modalBody} />}
-        </div>
-    );
-};
+import { DateFilter } from './ModalBody';
 
 export default () => {
     const setRequest = useContext(SearchRoomContext);
@@ -27,21 +15,7 @@ export default () => {
             id: 'date',
             name: '날짜',
             modalBody: (setButtonName, setIsClicked) => (
-                <DatePicker
-                    requestToServer={(startDate, endDate) => {
-                        setRequest({
-                            query: RoomAPI.GET_ROOMS_FILTERED_BY_DATE,
-                            filterOptions: RoomAPI.createFilterOption({ startDate, endDate }),
-                        });
-                        setIsClicked(false);
-                    }}
-                    datePicked={setButtonName}
-                    deleteButtonHandle={() => {
-                        setButtonName('날짜');
-                        setIsClicked(false);
-                    }}
-                    localeLanguage="ko"
-                />
+                <DateFilter setRequest={setRequest} setButtonName={setButtonName} setIsClicked={setIsClicked} />
             ),
         },
         { id: 'personnel', name: '인원' },
