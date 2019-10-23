@@ -5,6 +5,7 @@ import * as Style from './style';
 
 import RoomItem from 'components/RoomItem';
 import Modal from 'components/Modal';
+import ReservationModalBody from './ReservationModalBody';
 
 export default ({ query, filterOptions }) => {
     const [reserveButtonState, setReserveButtonState] = useState({ isClicked: false, roomId: null });
@@ -22,6 +23,11 @@ export default ({ query, filterOptions }) => {
         setReserveButtonState(state);
     };
 
+    const getRoomById = roomId => {
+        console.log(data.rooms.filter(({ room }) => room.id === roomId)[0].room);
+        return data.rooms.filter(({ room }) => room.id === roomId)[0].room;
+    };
+
     return (
         <Style.Main>
             <Style.Section>
@@ -30,7 +36,9 @@ export default ({ query, filterOptions }) => {
                     <RoomItem key={room.id} info={room} option={roomOption} reserveButtonHandle={reserveButtonHandle} />
                 ))}
             </Style.Section>
-            {reserveButtonState.isClicked && <Modal />}
+            {reserveButtonState.isClicked && (
+                <Modal body={<ReservationModalBody room={getRoomById(reserveButtonState.roomId)} />} />
+            )}
         </Style.Main>
     );
 };
