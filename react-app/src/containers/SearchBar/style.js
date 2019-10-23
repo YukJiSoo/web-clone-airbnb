@@ -19,7 +19,7 @@ export default styled.header`
         height: 32px;
         width: 32px;
         display: block;
-        fill: rgb(255, 90, 95);
+        fill: var(--primary-basic-color);
         padding: 1rem;
     }
 
@@ -44,19 +44,20 @@ export default styled.header`
             padding: 0 1.25rem;
 
             border-radius: 1.25rem;
-            border: solid 1px rgb(255, 90, 95);
+            border: solid 2px var(--primary-basic-color);
 
             background-color: white;
 
-            color: black;
+            color: var(--primary-basic-color);
             font-size: 1rem;
+            font-weight: 600;
 
             outline: none;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: rgb(255, 90, 95);
+            background-color: var(--primary-light-color);
             border-color: transparent;
 
             color: white;
@@ -64,10 +65,9 @@ export default styled.header`
         }
 
         button:active,
-        .isClicked,
-        .isClicked:hover {
+        .isClicked {
             color: white;
-            background-color: rgb(255, 90, 95);
+            background-color: var(--primary-basic-color);
             border-color: transparent;
         }
     }

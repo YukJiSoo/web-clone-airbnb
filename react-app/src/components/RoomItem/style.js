@@ -52,7 +52,7 @@ export default styled.article`
             border-radius: 1.25rem;
             border-color: transparent;
 
-            background-color: rgb(255, 90, 95);
+            background-color: var(--primary-basic-color);
 
             color: white;
             font-size: 1rem;
@@ -60,15 +60,10 @@ export default styled.article`
             outline: none;
         }
 
-        button:hover {
-            border-color: rgb(255, 90, 95);
-            color: rgb(255, 90, 95);
-            background-color: white;
-        }
-
+        button:hover,
         button:active {
-            border-color: rgb(255, 90, 95);
-            color: rgb(255, 90, 95);
+            border: 1px solid var(--primary-basic-color);
+            color: var(--primary-basic-color);
             background-color: white;
         }
     }

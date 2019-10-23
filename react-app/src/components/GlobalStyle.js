@@ -2,6 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
     * {
+        --primary-basic-color: rgb(255, 90, 95);
+        --primary-light-color: rgb(255, 150, 154);
+
         margin: 0;
         padding: 0;
         border: 0;

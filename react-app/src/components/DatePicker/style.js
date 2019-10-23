@@ -17,7 +17,7 @@ export const DatePicker = styled.div`
     .CalendarDay__selected_span,
     .CalendarDay__hovered_span:hover,
     .CalendarDay__hovered_span {
-        background: rgb(255, 150, 154);
+        background: var(--primary-light-color);
         color: white;
         border: 1px solid white;
     }
@@ -27,7 +27,7 @@ export const DatePicker = styled.div`
     .CalendarDay__selected:hover,
     .CalendarDay__selected_span:active,
     .CalendarDay__selected_span:hover {
-        background: rgb(255, 90, 95);
+        background: var(--primary-basic-color);
         color: white;
         border: 1px solid white;
     }
@@ -52,7 +52,7 @@ export const DatePickerButtonWrapper = styled.div`
         justify-content: space-between;
 
         .Save-Button {
-            color: rgb(255, 90, 95);
+            color: var(--primary-basic-color);
         }
 
         a:hover {
