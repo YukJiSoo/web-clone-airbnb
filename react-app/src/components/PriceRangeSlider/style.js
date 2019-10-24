@@ -8,9 +8,28 @@ export const PriceRangeSlider = styled.div`
         flex-direction: column;
         align-items: center;
 
+        .MuiSlider-root {
+            color: var(--primary-basic-color);
+        }
+
         .Range-Slider {
             margin: 1rem 0;
             width: 90%;
+        }
+
+        .MuiSlider-thumb {
+            width: 1rem;
+            height: 1rem;
+
+            margin-top: -0.45rem;
+
+            background-color: var(--primary-basic-color);
+        }
+
+        .MuiSlider-thumb.MuiSlider-active,
+        .MuiSlider-thumb.Mui-focusVisible,
+        .MuiSlider-thumb:hover {
+            box-shadow: 0px 0px 0px 8px var(--primary-light-color);
         }
     }
 `;

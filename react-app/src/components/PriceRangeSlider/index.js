@@ -19,7 +19,6 @@ const PriceRangeSlider = ({ value, minPrice, maxPrice, rangeSlided, saveButtonHa
                 aria-labelledby="range-slider"
                 value={price}
                 onChange={handleChange}
-                valueLabelDisplay="auto"
                 min={minPrice}
                 max={maxPrice}
             />
