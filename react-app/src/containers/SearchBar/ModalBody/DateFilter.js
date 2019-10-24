@@ -23,6 +23,7 @@ export default ({ setButtonName, setIsClicked }) => {
                 setButtonName(`${startDateString} - ${endDateString}`);
             }}
             deleteButtonHandle={() => {
+                dispatchSearchOption({ type: 'setDateFilter' });
                 setButtonName('날짜');
                 setIsClicked(false);
             }}

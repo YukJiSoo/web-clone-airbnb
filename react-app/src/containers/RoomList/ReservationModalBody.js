@@ -4,8 +4,9 @@ import * as Style from './style';
 import { getNightValueFromDateString } from 'util/ConverDate';
 
 export default ({ room, searchOptions }) => {
-    const { date } = searchOptions;
-
+    // const { date } = searchOptions;
+    // dummy data
+    const date = { checkIn: '2019-09-10', checkOut: '2019-09-20' };
     const nights = date
         ? getNightValueFromDateString({ startDateString: date.checkIn, endDateString: date.checkOut })
         : 0;

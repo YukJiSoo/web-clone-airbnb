@@ -22,6 +22,7 @@ export default ({ setButtonName, setIsClicked }) => {
                 else setButtonName(`게스트 ${guest}명${infant === 0 ? '' : `, 유아 ${infant}명`}`);
             }}
             deleteButtonHandle={() => {
+                dispatchSearchOption({ type: 'setPersonnelFilter' });
                 setButtonName('인원');
                 setIsClicked(false);
             }}
