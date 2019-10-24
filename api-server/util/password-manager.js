@@ -10,7 +10,6 @@ export const encrypt = async password =>
                 if (error) reject(error);
 
                 const passwordKey = key.toString('base64');
-                console.log(passwordKey);
                 resolve({ passwordKey, salt });
             });
         });

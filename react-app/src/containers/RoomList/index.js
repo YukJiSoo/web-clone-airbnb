@@ -30,7 +30,6 @@ export default () => {
     };
 
     const getRoomById = roomId => {
-        console.log(data.rooms.filter(({ room }) => room.id === roomId)[0].room);
         return data.rooms.filter(({ room }) => room.id === roomId)[0].room;
     };
 

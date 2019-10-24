@@ -31,15 +31,3 @@ const saveToJsonFile = data => {
         console.log('File has been created');
     });
 };
-
-// export default async filePath => {
-//     return new Promise((resolve, reject) => {
-//         const results = [];
-
-//         fs.createReadStream(filePath)
-//             .pipe(csv())
-//             .on('data', data => results.push(data))
-//             .on('error', err => reject(err))
-//             .on('end', () => resolve(results));
-//     });
-// };

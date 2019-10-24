@@ -8,7 +8,6 @@ const PriceRangeSlider = ({ value, minPrice, maxPrice, rangeSlided, saveButtonHa
     const [price, setPrice] = value;
 
     const handleChange = (event, newValue) => {
-        console.log(newValue);
         const [newValueStart, newValueEnd] = newValue;
         if (newValueEnd - newValueStart <= 5000) setPrice(price);
         else {
