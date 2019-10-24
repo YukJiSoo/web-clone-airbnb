@@ -4,29 +4,30 @@ import Style from './style';
 import SearchButton from './SearchButton';
 import Logo from 'components/Logo';
 import Modal from 'components/Modal';
-import { DateFilter, PersonnelFilter } from './ModalBody';
+import { DateFilter, PersonnelFilter, PriceFilter } from './ModalBody';
 
 import { isMobile } from 'Constants';
 
 export default () => {
     const searchInfos = [
         {
-            id: 'date',
             name: '날짜',
             modalBody: (setButtonName, setIsClicked) => (
                 <DateFilter setButtonName={setButtonName} setIsClicked={setIsClicked} />
             ),
         },
         {
-            id: 'personnel',
             name: '인원',
             modalBody: (setButtonName, setIsClicked) => (
                 <PersonnelFilter setButtonName={setButtonName} setIsClicked={setIsClicked} />
             ),
         },
-        { id: 'roomType', name: '숙소 유형' },
-        { id: 'price', name: '가격' },
-        { id: 'anotherOption', name: '필터 추가하기' },
+        {
+            name: '가격',
+            modalBody: (setButtonName, setIsClicked) => (
+                <PriceFilter setButtonName={setButtonName} setIsClicked={setIsClicked} />
+            ),
+        },
     ];
 
     const searchStates = searchInfos.map(info => {

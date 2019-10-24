@@ -1,3 +1,5 @@
 import DateFilter from './DateFilter';
 import PersonnelFilter from './PersonnelFilter';
-export { DateFilter, PersonnelFilter };
+import PriceFilter from './PriceFilter';
+
+export { DateFilter, PersonnelFilter, PriceFilter };
