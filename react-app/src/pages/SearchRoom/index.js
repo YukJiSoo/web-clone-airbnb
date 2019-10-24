@@ -17,6 +17,9 @@ const searchOptionReducer = (state, { type, payload }) => {
         case 'setPersonnelFilter': {
             return { ...state, searchOptions: { ...state.searchOptions, personnel: payload } };
         }
+        case 'setPriceFilter': {
+            return { ...state, searchOptions: { ...state.searchOptions, price: payload } };
+        }
         default: {
             throw new Error(`unexpected action.type: ${type}`);
         }
