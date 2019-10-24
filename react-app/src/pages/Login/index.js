@@ -7,13 +7,20 @@ import * as AuthAPI from 'graphql/mutation/auth';
 
 import Logo from 'components/Logo';
 
+import { getToken, setToken } from 'service/TokenManager';
+
 const Login = ({ history }) => {
+    if (getToken()) history.push('/main');
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [joinUser, { data, loading, error }] = useMutation(AuthAPI.JOIN_USER);
 
     useEffect(() => {
-        if (data) history.push('/main');
+        if (data) {
+            setToken(data.joinUser);
+            history.push('/main');
+        }
         if (loading) console.log('로그인 중');
         if (error) console.log('로그인 실패');
     }, [data, loading, error]);
