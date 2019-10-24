@@ -12,7 +12,6 @@ const convertOptionDataToStrings = (maxGuest, option) => {
 
 export default ({ info, option, reserveButtonHandle }) => {
     const { optionFirstLine, optionSecondLine } = convertOptionDataToStrings(info.maxGuest, option);
-
     return (
         <Style>
             <div className="Room-image"></div>
@@ -21,7 +20,12 @@ export default ({ info, option, reserveButtonHandle }) => {
                 <p>{optionFirstLine}</p>
                 <p>{optionSecondLine}</p>
                 <div className="Room-Content-BottomArea">
-                    <span>{info.reviewNum}</span>
+                    <div>
+                        {[...Array(info.starRating).keys()].map(() => (
+                            <span>&#x2B50;</span>
+                        ))}
+                        <span className="Review-Count">{info.reviewNum}</span>
+                    </div>
                     <button onClick={() => reserveButtonHandle({ roomId: info.id })}>예약하기</button>
                 </div>
             </div>

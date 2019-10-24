@@ -67,4 +67,8 @@ export default styled.article`
             background-color: white;
         }
     }
+
+    .Review-Count {
+        margin-left: 0.5rem;
+    }
 `;
