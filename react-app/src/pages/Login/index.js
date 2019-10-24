@@ -22,7 +22,7 @@ const Login = ({ history }) => {
             history.push('/main');
         }
         if (loading) console.log('로그인 중');
-        if (error) console.log('로그인 실패');
+        if (error) alert('입력란을 다시 한번 확인해주세요');
     }, [data, loading, error]);
 
     const join = () => joinUser({ variables: { email, password } });

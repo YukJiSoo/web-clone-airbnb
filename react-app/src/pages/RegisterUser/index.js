@@ -18,10 +18,11 @@ export default ({ history }) => {
     useEffect(() => {
         if (data) {
             setToken(data.registerUser);
+            alert('회원가입에 성공했습니다');
             history.push('/main');
         }
         if (loading) console.log('회원가입 중');
-        if (error) console.log('회원가입 실패');
+        if (error) alert('입력란을 다시 한번 확인해주세요');
     }, [data, loading, error]);
 
     const register = () => {

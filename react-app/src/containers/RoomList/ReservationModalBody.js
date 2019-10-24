@@ -15,14 +15,14 @@ export default ({ room, searchOptions, closeModal }) => {
     const [addBooking, { data, loading, error }] = useMutation(RoomAPI.ADD_BOOKING);
 
     useEffect(() => {
-        if (data && !data.reserveRoom.success) console.log('이미 예약됨');
+        if (data && !data.reserveRoom.success) alert('이미 예약되어있는 숙소입니다');
         if (data && data.reserveRoom.success) {
             closeModal();
             alert('예약이 완료됬습니다.');
             dispatchSearchOption({ type: 'reset' });
         }
         if (loading) console.log('추가 중');
-        if (error) console.log('추가 실패');
+        if (error) alert('이미 예약되어있는 숙소입니다');
     }, [data, loading, error]);
 
     const nights = date
