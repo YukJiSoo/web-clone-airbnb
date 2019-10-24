@@ -8,8 +8,12 @@ const PriceRangeSlider = ({ value, minPrice, maxPrice, rangeSlided, saveButtonHa
     const [price, setPrice] = value;
 
     const handleChange = (_, newValue) => {
-        rangeSlided(newValue);
-        setPrice(newValue);
+        const [newValueStart, newValueEnd] = newValue;
+        if (newValueEnd - newValueStart <= 5000) setPrice(price);
+        else {
+            setPrice(newValue);
+            rangeSlided(newValue);
+        }
     };
 
     return (
