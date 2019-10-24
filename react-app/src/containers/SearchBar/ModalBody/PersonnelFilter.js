@@ -3,20 +3,15 @@ import PersonnelController from 'components/PersonnelController';
 
 import { SearchRoomContext } from 'pages/SearchRoom';
 
-import * as RoomAPI from 'graphql/query/room';
-
 export default ({ setButtonName, setIsClicked }) => {
-    const { request, setRequest } = useContext(SearchRoomContext);
+    const { dispatchSearchOption } = useContext(SearchRoomContext);
 
     return (
         <PersonnelController
             requestToServer={(adult, children, infant) => {
-                setRequest({
-                    query: RoomAPI.GET_ROOMS,
-                    filterOptions: {
-                        ...request.filterOptions,
-                        personnel: { adult, children, infant },
-                    },
+                dispatchSearchOption({
+                    type: 'setPersonnelFilter',
+                    payload: { adult, children, infant },
                 });
                 setIsClicked(false);
             }}

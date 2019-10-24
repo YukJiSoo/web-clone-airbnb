@@ -6,17 +6,14 @@ import * as RoomAPI from 'graphql/query/room';
 import DatePicker from 'components/DatePicker';
 
 export default ({ setButtonName, setIsClicked }) => {
-    const { request, setRequest } = useContext(SearchRoomContext);
+    const { dispatchSearchOption } = useContext(SearchRoomContext);
 
     return (
         <DatePicker
             requestToServer={(startDate, endDate) => {
-                setRequest({
-                    query: RoomAPI.GET_ROOMS,
-                    filterOptions: {
-                        ...request.filterOptions,
-                        date: RoomAPI.createDateFilterOption({ startDate, endDate }),
-                    },
+                dispatchSearchOption({
+                    type: 'setDateFilter',
+                    payload: RoomAPI.createDateSearchOption({ startDate, endDate }),
                 });
                 setIsClicked(false);
             }}

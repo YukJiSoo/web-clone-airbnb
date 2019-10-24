@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import * as Style from './style';
+
+import { SearchRoomContext } from 'pages/SearchRoom';
 
 import RoomItem from 'components/RoomItem';
 import Modal from 'components/Modal';
 import ReservationModalBody from './ReservationModalBody';
 
-export default ({ query, filterOptions }) => {
+export default () => {
+    const {
+        searchOption: { query, searchOptions },
+    } = useContext(SearchRoomContext);
     const [reserveButtonState, setReserveButtonState] = useState({ isClicked: false, roomId: null });
     const { loading, error, data } = useQuery(query, {
-        variables: { filterOptions },
+        variables: { searchOptions: searchOptions },
     });
+
     // TODO: 로딩, 에러 view 구현
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error!(</p>;
@@ -45,7 +51,7 @@ export default ({ query, filterOptions }) => {
                     body={
                         <ReservationModalBody
                             room={getRoomById(reserveButtonState.roomId)}
-                            filterOptions={filterOptions}
+                            searchOptions={searchOptions}
                         />
                     }
                     clickOutOfModalAreaHandle={clickOutOfModalAreaHandle}
