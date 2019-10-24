@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 
 import * as Style from './style';
 
-export default ({ requestToServer, personnelControlled, deleteButtonHandle }) => {
-    const adultState = useState(0);
-    const childrenState = useState(0);
-    const infantState = useState(0);
+export default ({ personnel, requestToServer, personnelControlled, deleteButtonHandle }) => {
+    const { adult, children, infant } = personnel;
+    const adultState = useState(adult ? adult : 0);
+    const childrenState = useState(children ? children : 0);
+    const infantState = useState(infant ? infant : 0);
 
     const personnelItems = [[...adultState, '성인'], [...childrenState, '어린이'], [...infantState, '유아']];
 
     const saveButtonHandler = (adult, children, infant) => () => {
-        requestToServer(adult, children, infant);
+        requestToServer({ adult, children, infant });
     };
 
     const decreaseButtonHandler = (state, setState) => () => {
@@ -23,7 +24,7 @@ export default ({ requestToServer, personnelControlled, deleteButtonHandle }) =>
     };
 
     useEffect(() => {
-        personnelControlled(adultState[0], childrenState[0], infantState[0]);
+        personnelControlled({ adult: adultState[0], children: childrenState[0], infant: infantState[0] });
     });
 
     return (

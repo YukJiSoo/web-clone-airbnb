@@ -4,18 +4,22 @@ import PersonnelController from 'components/PersonnelController';
 import { SearchRoomContext } from 'pages/SearchRoom';
 
 export default ({ setButtonName, setIsClicked }) => {
-    const { dispatchSearchOption } = useContext(SearchRoomContext);
+    const {
+        searchOption: { searchOptions },
+        dispatchSearchOption,
+    } = useContext(SearchRoomContext);
 
     return (
         <PersonnelController
-            requestToServer={(adult, children, infant) => {
+            personnel={searchOptions.personnel ? searchOptions.personnel : {}}
+            requestToServer={personnel => {
                 dispatchSearchOption({
                     type: 'setPersonnelFilter',
-                    payload: { adult, children, infant },
+                    payload: personnel,
                 });
                 setIsClicked(false);
             }}
-            personnelControlled={(adult, children, infant) => {
+            personnelControlled={({ adult, children, infant }) => {
                 const guest = adult + children + infant;
 
                 if (guest === 0) setButtonName('인원');
