@@ -16,7 +16,20 @@ export const Main = styled.main`
             height: 13rem;
             width: 13rem;
 
+            animation: boxFade 1s 0.5s infinite linear alternate;
             fill: var(--primary-basic-color);
+        }
+    }
+
+    @keyframes boxFade {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
         }
     }
 `;
