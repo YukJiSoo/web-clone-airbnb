@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import * as Style from './style';
 
-export default ({ personnel, requestToServer, personnelControlled, deleteButtonHandle }) => {
-    const { adult, children, infant } = personnel;
-    const adultState = useState(adult ? adult : 0);
-    const childrenState = useState(children ? children : 0);
-    const infantState = useState(infant ? infant : 0);
-
-    const personnelItems = [[...adultState, '성인'], [...childrenState, '어린이'], [...infantState, '유아']];
-
-    const saveButtonHandler = (adult, children, infant) => () => {
-        requestToServer({ adult, children, infant });
+/* 
+personnelItems: [state, setState, rendering되는 이름, payload에 담길 이름]
+personnelControlled: 버튼클릭 시 호출되는 함수
+*/
+export default ({ personnelItems, requestToServer, personnelControlled, deleteButtonHandle }) => {
+    const saveButtonHandler = () => () => {
+        const personnel = personnelItems.reduce((payload, item) => {
+            const [stateValue, stateName] = [item[0], item[3]];
+            payload[stateName] = stateValue;
+            return payload;
+        }, {});
+        requestToServer(personnel);
     };
 
     const decreaseButtonHandler = (state, setState) => () => {
@@ -24,7 +26,8 @@ export default ({ personnel, requestToServer, personnelControlled, deleteButtonH
     };
 
     useEffect(() => {
-        personnelControlled({ adult: adultState[0], children: childrenState[0], infant: infantState[0] });
+        const states = personnelItems.map(item => item[0]);
+        personnelControlled(states);
     });
 
     return (
@@ -46,7 +49,7 @@ export default ({ personnel, requestToServer, personnelControlled, deleteButtonH
             ))}
             <Style.PersonnelControllerButtonWrapper>
                 <a onClick={deleteButtonHandle}>삭제</a>
-                <a className="Save-Button" onClick={saveButtonHandler(adultState[0], childrenState[0], infantState[0])}>
+                <a className="Save-Button" onClick={saveButtonHandler()}>
                     저장
                 </a>
             </Style.PersonnelControllerButtonWrapper>
