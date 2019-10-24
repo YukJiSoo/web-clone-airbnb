@@ -7,7 +7,7 @@ import * as AuthAPI from 'graphql/mutation/auth';
 
 import Logo from 'components/Logo';
 
-export default () => {
+const Login = ({ history }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [joinUser, { data, loading, error }] = useMutation(AuthAPI.JOIN_USER);
@@ -34,8 +34,10 @@ export default () => {
             </Style.InputField>
             <Style.LoginButtonWrapper>
                 <button onClick={join}>로그인</button>
-                <button>회원가입</button>
+                <button onClick={() => history.push('/register')}>회원가입</button>
             </Style.LoginButtonWrapper>
         </Style.Main>
     );
 };
+
+export default Login;
