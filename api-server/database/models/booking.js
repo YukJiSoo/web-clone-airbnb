@@ -36,8 +36,6 @@ module.exports = (sequelize, DataTypes) => {
     );
 
     Booking.registerNewBooking = async ({ userId, roomId, date, personnel }) => {
-        console.log('userId, roomId, date, personnel');
-        console.log(userId, roomId, date, personnel);
         try {
             const { checkIn, checkOut } = date;
             const { adult, children, infant } = personnel;
