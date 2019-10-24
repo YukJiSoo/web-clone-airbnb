@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useMutation } from '@apollo/react-hooks';
 
 import * as Style from './style';
+
+import * as RoomAPI from 'graphql/mutation/booking';
+
 import { getNightValueFromDateString } from 'util/ConverDate';
 
-export default ({ room, searchOptions }) => {
+export default ({ room, searchOptions, closeModal }) => {
     const { date, personnel } = searchOptions;
+    const [addBooking, { data, loading, error }] = useMutation(RoomAPI.ADD_BOOKING);
+
+    useEffect(() => {
+        if (data && !data.reserveRoom.success) console.log('이미 예약됨');
+        if (data && data.reserveRoom.success) closeModal();
+        if (loading) console.log('추가 중');
+        if (error) console.log('추가 실패');
+    }, [data, loading, error]);
 
     const nights = date
         ? getNightValueFromDateString({ startDateString: date.checkIn, endDateString: date.checkOut })
         : 0;
     const guest = personnel ? personnel.adult + personnel.children : 0;
+
+    const reserveButtonClick = () => {
+        const variables = { data: { roomId: room.id, date, personnel } };
+        addBooking({ variables });
+    };
 
     return (
         <Style.ReservationModalBody>
@@ -50,7 +67,9 @@ export default ({ room, searchOptions }) => {
                 )}
             </div>
             <hr></hr>
-            <button className={!(date && personnel) ? 'Non-Clickable' : ''}>예약하기</button>
+            <button className={!(date && personnel) ? 'Non-Clickable' : ''} onClick={reserveButtonClick}>
+                예약하기
+            </button>
             <small>예약 확정 전에는 요금이 청구되지 않습니다</small>
         </Style.ReservationModalBody>
     );

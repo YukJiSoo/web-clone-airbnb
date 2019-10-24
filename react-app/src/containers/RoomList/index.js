@@ -52,6 +52,7 @@ export default () => {
                         <ReservationModalBody
                             room={getRoomById(reserveButtonState.roomId)}
                             searchOptions={searchOptions}
+                            closeModal={() => setReserveButtonState(false)}
                         />
                     }
                     clickOutOfModalAreaHandle={clickOutOfModalAreaHandle}
