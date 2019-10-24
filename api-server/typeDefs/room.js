@@ -13,7 +13,7 @@ export default gql`
     }
 
     extend type Query {
-        rooms(filterOptions: RoomsFilteringOptionInput): [RoomsResponse]
+        rooms(searchOptions: RoomsFilteringOptionInput): [RoomsResponse]
     }
 
     extend type Mutation {

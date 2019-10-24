@@ -3,8 +3,8 @@ import React from 'react';
 import * as Style from './style';
 import { getNightValueFromDateString } from 'util/ConverDate';
 
-export default ({ room, filterOptions }) => {
-    const { date } = filterOptions;
+export default ({ room, searchOptions }) => {
+    const { date } = searchOptions;
 
     const nights = date
         ? getNightValueFromDateString({ startDateString: date.checkIn, endDateString: date.checkOut })
@@ -42,7 +42,7 @@ export default ({ room, filterOptions }) => {
                 )}
             </div>
             <hr></hr>
-            <button>예약하기</button>
+            <button className={!date ? 'Non-Clickable' : ''}>예약하기</button>
             <small>예약 확정 전에는 요금이 청구되지 않습니다</small>
         </Style.ReservationModalBody>
     );

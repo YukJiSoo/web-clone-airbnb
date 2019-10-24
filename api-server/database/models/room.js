@@ -40,17 +40,17 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
 
-    Room.findAllByFilter = async filterOptions => {
+    Room.findAllByFilter = async searchOptions => {
         const models = require('../models');
 
         const joinCondition = { model: models.RoomOption };
-        if (filterOptions && filterOptions.date) {
-            joinCondition['where'] = createDateFilterCondition(filterOptions.date);
+        if (searchOptions && searchOptions.date) {
+            joinCondition['where'] = createDateFilterCondition(searchOptions.date);
         }
 
         const roomCondition = {};
-        if (filterOptions && filterOptions.personnel) {
-            roomCondition.maxGuest = createPersonnelFilterCondition(filterOptions.personnel);
+        if (searchOptions && searchOptions.personnel) {
+            roomCondition.maxGuest = createPersonnelFilterCondition(searchOptions.personnel);
         }
 
         try {

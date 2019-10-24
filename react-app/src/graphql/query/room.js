@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const GET_ROOMS = gql`
-    query RoomsFilteredByDate($filterOptions: RoomsFilteringOptionInput) {
-        rooms(filterOptions: $filterOptions) {
+    query RoomsFilteredByDate($searchOptions: RoomsFilteringOptionInput) {
+        rooms(searchOptions: $searchOptions) {
             room {
                 id
                 name
@@ -27,7 +27,7 @@ export const GET_ROOMS = gql`
     }
 `;
 
-export const createDateFilterOption = ({ startDate, endDate }) => ({
+export const createDateSearchOption = ({ startDate, endDate }) => ({
     checkIn: startDate.format('YYYY[-]MM[-]DD'),
     checkOut: endDate.format('YYYY[-]MM[-]DD'),
 });
