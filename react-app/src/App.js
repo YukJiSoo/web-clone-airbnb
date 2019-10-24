@@ -15,6 +15,7 @@ import dotenv from 'dotenv';
 // Import pages
 import { SearchRoom } from 'pages/SearchRoom';
 import Login from 'pages/Login';
+import RegisterUser from 'pages/RegisterUser';
 
 // Import components
 import GlobalStyle from 'components/GlobalStyle';
@@ -45,7 +46,8 @@ const App = () => {
             <Router>
                 <GlobalStyle />
                 <Switch>
-                    <Route path="/" component={Login} />
+                    <Route exact path="/" component={Login} />
+                    <Route path="/register" component={RegisterUser} />
                     <Route path="/search" component={SearchRoom} />
                 </Switch>
             </Router>
