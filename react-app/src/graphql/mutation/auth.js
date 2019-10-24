@@ -11,3 +11,16 @@ export const JOIN_USER = gql`
         }
     }
 `;
+
+export const REGISTER_USER = gql`
+    mutation RegisterUser($data: RegisterInput!) {
+        registerUser(data: $data) {
+            token
+            user {
+                id
+                name
+                email
+            }
+        }
+    }
+`;
