@@ -21,8 +21,8 @@ export default ({ info, option, reserveButtonHandle }) => {
                 <p>{optionSecondLine}</p>
                 <div className="Room-Content-BottomArea">
                     <div>
-                        {[...Array(info.starRating).keys()].map(() => (
-                            <span>&#x2B50;</span>
+                        {[...Array(info.starRating).keys()].map((_, index) => (
+                            <span key={index}>&#x2B50;</span>
                         ))}
                         <span className="Review-Count">{info.reviewNum}</span>
                     </div>
