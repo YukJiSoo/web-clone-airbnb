@@ -4,10 +4,10 @@ import * as Style from './style';
 
 import Slider from '@material-ui/core/Slider';
 
-const PriceRangeSlider = ({ minPrice, maxPrice, rangeSlided, saveButtonHandle, deleteButtonHandle }) => {
-    const [price, setPrice] = React.useState([minPrice, maxPrice]);
+const PriceRangeSlider = ({ value, minPrice, maxPrice, rangeSlided, saveButtonHandle, deleteButtonHandle }) => {
+    const [price, setPrice] = value;
 
-    const handleChange = (e, newValue) => {
+    const handleChange = (_, newValue) => {
         rangeSlided(newValue);
         setPrice(newValue);
     };
@@ -20,7 +20,6 @@ const PriceRangeSlider = ({ minPrice, maxPrice, rangeSlided, saveButtonHandle, d
                 value={price}
                 onChange={handleChange}
                 valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
                 min={minPrice}
                 max={maxPrice}
             />
