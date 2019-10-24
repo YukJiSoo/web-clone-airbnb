@@ -20,4 +20,9 @@ export default createGlobalStyle`
     html, body, .root {
         height: 100%;
     }
+
+    body {
+        @import url('https://fonts.googleapis.com/css?family=Gugi:400');
+        font-family: 'Gugi';
+    }
 `;
