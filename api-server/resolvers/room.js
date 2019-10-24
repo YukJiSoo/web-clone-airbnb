@@ -1,8 +1,7 @@
 import { AuthenticationError, UserInputError } from 'apollo-server';
 
 // Validator
-const isAdultGreaterThan0 = filterOptions =>
-    filterOptions && filterOptions.personnel && filterOptions.personnel.adult > 0;
+const isAdultValue0 = filterOptions => filterOptions && filterOptions.personnel && filterOptions.personnel.adult <= 0;
 
 // Resolvers
 const rooms = async (_, args, context) => {
@@ -11,7 +10,7 @@ const rooms = async (_, args, context) => {
     const { filterOptions } = args;
 
     try {
-        if (!isAdultGreaterThan0(filterOptions)) throw new UserInputError('Adult need to minimun 1');
+        if (isAdultValue0(filterOptions)) throw new UserInputError('Adult need to minimun 1');
 
         const results = await Room.findAllByFilter(filterOptions);
 
