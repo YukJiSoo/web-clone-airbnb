@@ -1,27 +1,29 @@
 import React, { useState, useContext } from 'react';
 import Style from './style';
 
-import { SearchRoomContext } from 'pages/SearchRoom';
-
 import SearchButton from './SearchButton';
 import Logo from 'components/Logo';
 import Modal from 'components/Modal';
-import { DateFilter } from './ModalBody';
+import { DateFilter, PersonnelFilter } from './ModalBody';
 
 import { isMobile } from 'Constants';
 
 export default () => {
-    const setRequest = useContext(SearchRoomContext);
-
     const searchInfos = [
         {
             id: 'date',
             name: '날짜',
             modalBody: (setButtonName, setIsClicked) => (
-                <DateFilter setRequest={setRequest} setButtonName={setButtonName} setIsClicked={setIsClicked} />
+                <DateFilter setButtonName={setButtonName} setIsClicked={setIsClicked} />
             ),
         },
-        { id: 'personnel', name: '인원' },
+        {
+            id: 'personnel',
+            name: '인원',
+            modalBody: (setButtonName, setIsClicked) => (
+                <PersonnelFilter setButtonName={setButtonName} setIsClicked={setIsClicked} />
+            ),
+        },
         { id: 'roomType', name: '숙소 유형' },
         { id: 'price', name: '가격' },
         { id: 'anotherOption', name: '필터 추가하기' },

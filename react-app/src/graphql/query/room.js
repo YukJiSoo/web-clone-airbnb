@@ -27,9 +27,7 @@ export const GET_ROOMS = gql`
     }
 `;
 
-export const createFilterOption = ({ startDate, endDate }) => ({
-    date: {
-        checkIn: startDate.format('YYYY[-]MM[-]DD'),
-        checkOut: endDate.format('YYYY[-]MM[-]DD'),
-    },
+export const createDateFilterOption = ({ startDate, endDate }) => ({
+    checkIn: startDate.format('YYYY[-]MM[-]DD'),
+    checkOut: endDate.format('YYYY[-]MM[-]DD'),
 });

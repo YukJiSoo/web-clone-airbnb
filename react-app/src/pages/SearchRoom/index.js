@@ -10,7 +10,7 @@ export const SearchRoom = () => {
     const [request, setRequest] = useState({ query: RoomAPI.GET_ROOMS, filterOptions: {} });
 
     return (
-        <SearchRoomContext.Provider value={setRequest}>
+        <SearchRoomContext.Provider value={{ request, setRequest }}>
             <SearchBar />
             <RoomList query={request.query} filterOptions={request.filterOptions} />
         </SearchRoomContext.Provider>

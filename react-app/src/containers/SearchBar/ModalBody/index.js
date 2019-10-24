@@ -1,2 +1,3 @@
 import DateFilter from './DateFilter';
-export { DateFilter };
+import PersonnelFilter from './PersonnelFilter';
+export { DateFilter, PersonnelFilter };
