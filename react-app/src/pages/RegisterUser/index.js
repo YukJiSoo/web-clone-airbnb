@@ -7,14 +7,14 @@ import * as AuthAPI from 'graphql/mutation/auth';
 
 import Logo from 'components/Logo';
 
-export default () => {
+export default ({ history }) => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [registerUser, { data, loading, error }] = useMutation(AuthAPI.REGISTER_USER);
 
     useEffect(() => {
-        if (data) console.log(data.registerUser.token);
+        if (data) history.push('/main');
         if (loading) console.log('회원가입 중');
         if (error) console.log('회원가입 실패');
     }, [data, loading, error]);

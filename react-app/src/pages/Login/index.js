@@ -13,7 +13,7 @@ const Login = ({ history }) => {
     const [joinUser, { data, loading, error }] = useMutation(AuthAPI.JOIN_USER);
 
     useEffect(() => {
-        if (data) console.log(data.joinUser.token);
+        if (data) history.push('/main');
         if (loading) console.log('로그인 중');
         if (error) console.log('로그인 실패');
     }, [data, loading, error]);
@@ -34,7 +34,7 @@ const Login = ({ history }) => {
             </Style.InputField>
             <Style.LoginButtonWrapper>
                 <button onClick={join}>로그인</button>
-                <button onClick={() => history.push('/register')}>회원가입</button>
+                <button onClick={() => history.push('/user/register')}>회원가입</button>
             </Style.LoginButtonWrapper>
         </Style.Main>
     );

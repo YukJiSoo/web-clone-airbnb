@@ -47,8 +47,8 @@ const App = () => {
                 <GlobalStyle />
                 <Switch>
                     <Route exact path="/" component={Login} />
-                    <Route path="/register" component={RegisterUser} />
-                    <Route path="/search" component={SearchRoom} />
+                    <Route path="/user/register" component={RegisterUser} />
+                    <Route path="/main" component={SearchRoom} />
                 </Switch>
             </Router>
         </ApolloProvider>
