@@ -17,7 +17,7 @@ export default ({ history }) => {
 
     useEffect(() => {
         if (data) {
-            setToken(data.joinUser);
+            setToken(data.registerUser);
             history.push('/main');
         }
         if (loading) console.log('회원가입 중');
