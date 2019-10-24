@@ -7,7 +7,7 @@ export default ({ setRequest, setButtonName, setIsClicked }) => (
     <DatePicker
         requestToServer={(startDate, endDate) => {
             setRequest({
-                query: RoomAPI.GET_ROOMS_FILTERED_BY_DATE,
+                query: RoomAPI.GET_ROOMS,
                 filterOptions: RoomAPI.createFilterOption({ startDate, endDate }),
             });
             setIsClicked(false);
