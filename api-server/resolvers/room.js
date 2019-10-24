@@ -1,11 +1,18 @@
-import { AuthenticationError } from 'apollo-server';
+import { AuthenticationError, UserInputError } from 'apollo-server';
 
+// Validator
+const isAdultGreaterThan0 = filterOptions =>
+    filterOptions && filterOptions.personnel && filterOptions.personnel.adult > 0;
+
+// Resolvers
 const rooms = async (_, args, context) => {
     if (!context.user) throw new AuthenticationError('Token is expired or do not exist');
     const { Room } = context.model;
     const { filterOptions } = args;
 
     try {
+        if (!isAdultGreaterThan0(filterOptions)) throw new UserInputError('Adult need to minimun 1');
+
         const results = await Room.findAllByFilter(filterOptions);
 
         return results.map(result => ({
