@@ -52,6 +52,9 @@ module.exports = (sequelize, DataTypes) => {
         if (searchOptions && searchOptions.personnel) {
             roomCondition.maxGuest = createPersonnelFilterCondition(searchOptions.personnel);
         }
+        if (searchOptions && searchOptions.price) {
+            roomCondition.price = createPriceFilterCondition(searchOptions.price);
+        }
 
         try {
             return await Room.findAll({
@@ -83,6 +86,10 @@ module.exports = (sequelize, DataTypes) => {
     const createPersonnelFilterCondition = ({ adult, children }) => {
         const guestCount = adult + children;
         return { [Op.gte]: guestCount };
+    };
+
+    const createPriceFilterCondition = ({ startPrice, endPrice }) => {
+        return { [Op.gte]: startPrice, [Op.lte]: endPrice };
     };
 
     return Room;
