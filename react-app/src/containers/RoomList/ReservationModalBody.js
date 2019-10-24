@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 import * as Style from './style';
+
+import { SearchRoomContext } from 'pages/SearchRoom';
 
 import * as RoomAPI from 'graphql/mutation/booking';
 
@@ -9,11 +11,16 @@ import { getNightValueFromDateString } from 'util/ConverDate';
 
 export default ({ room, searchOptions, closeModal }) => {
     const { date, personnel } = searchOptions;
+    const { dispatchSearchOption } = useContext(SearchRoomContext);
     const [addBooking, { data, loading, error }] = useMutation(RoomAPI.ADD_BOOKING);
 
     useEffect(() => {
         if (data && !data.reserveRoom.success) console.log('이미 예약됨');
-        if (data && data.reserveRoom.success) closeModal();
+        if (data && data.reserveRoom.success) {
+            closeModal();
+            alert('예약이 완료됬습니다.');
+            dispatchSearchOption({ type: 'reset' });
+        }
         if (loading) console.log('추가 중');
         if (error) console.log('추가 실패');
     }, [data, loading, error]);
