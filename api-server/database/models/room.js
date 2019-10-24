@@ -43,30 +43,46 @@ module.exports = (sequelize, DataTypes) => {
     Room.findAllByFilter = async filterOptions => {
         const models = require('../models');
 
-        const joinOption = { model: models.RoomOption };
+        const joinCondition = { model: models.RoomOption };
         if (filterOptions && filterOptions.date) {
-            const reservedRooomsSQL = sequelize.dialect.QueryGenerator.selectQuery('bookings', {
-                attributes: ['room_id'],
-                where: {
-                    check_out: { [Op.gt]: filterOptions.date.checkIn },
-                    check_in: { [Op.lt]: filterOptions.date.checkOut },
-                },
-            }).slice(0, -1);
+            joinCondition['where'] = createDateFilterCondition(filterOptions.date);
+        }
 
-            joinOption['where'] = {
-                id: {
-                    [Op.notIn]: sequelize.literal('(' + reservedRooomsSQL + ')'),
-                },
-            };
+        const roomCondition = {};
+        if (filterOptions && filterOptions.personnel) {
+            roomCondition.maxGuest = createPersonnelFilterCondition(filterOptions.personnel);
         }
 
         try {
             return await Room.findAll({
-                include: [joinOption],
+                include: [joinCondition],
+                where: roomCondition,
             });
         } catch (error) {
             throw error;
         }
+    };
+
+    // 쿼리 조건 생성 함수
+    const createDateFilterCondition = ({ checkIn, checkOut }) => {
+        const reservedRooomsSQL = sequelize.dialect.QueryGenerator.selectQuery('bookings', {
+            attributes: ['room_id'],
+            where: {
+                check_out: { [Op.gt]: checkIn },
+                check_in: { [Op.lt]: checkOut },
+            },
+        }).slice(0, -1);
+
+        return {
+            id: {
+                [Op.notIn]: sequelize.literal('(' + reservedRooomsSQL + ')'),
+            },
+        };
+    };
+
+    const createPersonnelFilterCondition = ({ adult, children }) => {
+        const guestCount = adult + children;
+        return { [Op.gte]: guestCount };
     };
 
     return Room;
