@@ -22,7 +22,6 @@ export default createGlobalStyle`
     }
 
     body {
-        @import url('https://fonts.googleapis.com/css?family=Gugi:400');
         font-family: 'Gugi';
     }
 `;

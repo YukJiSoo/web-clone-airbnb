@@ -7,7 +7,8 @@ import Slider from '@material-ui/core/Slider';
 const PriceRangeSlider = ({ value, minPrice, maxPrice, rangeSlided, saveButtonHandle, deleteButtonHandle }) => {
     const [price, setPrice] = value;
 
-    const handleChange = (_, newValue) => {
+    const handleChange = (event, newValue) => {
+        console.log(newValue);
         const [newValueStart, newValueEnd] = newValue;
         if (newValueEnd - newValueStart <= 5000) setPrice(price);
         else {
