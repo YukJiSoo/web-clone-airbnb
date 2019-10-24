@@ -23,6 +23,7 @@ export default gql`
     "Input"
     input RoomsFilteringOptionInput {
         date: DateFilterInput
+        personnel: PersonnelFilterInput
     }
 
     input DateFilterInput {
@@ -30,16 +31,16 @@ export default gql`
         checkOut: String!
     }
 
-    input ReserveRoomInput {
-        roomId: ID!
-        date: DateFilterInput!
-        personnel: PersonnelFilterInput!
-    }
-
     input PersonnelFilterInput {
         adult: Int!
         children: Int!
         infant: Int!
+    }
+
+    input ReserveRoomInput {
+        roomId: ID!
+        date: DateFilterInput!
+        personnel: PersonnelFilterInput!
     }
 
     "Response"
