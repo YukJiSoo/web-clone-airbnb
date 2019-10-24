@@ -14,6 +14,7 @@ import dotenv from 'dotenv';
 
 // Import pages
 import { SearchRoom } from 'pages/SearchRoom';
+import Login from 'pages/Login';
 
 // Import components
 import GlobalStyle from 'components/GlobalStyle';
@@ -44,7 +45,8 @@ const App = () => {
             <Router>
                 <GlobalStyle />
                 <Switch>
-                    <Route exact path="/" component={SearchRoom} />
+                    <Route path="/" component={Login} />
+                    <Route path="/search" component={SearchRoom} />
                 </Switch>
             </Router>
         </ApolloProvider>
