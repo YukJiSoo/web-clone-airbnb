@@ -28,12 +28,12 @@ const searchOptionReducer = (state, { type, payload }) => {
 
 export const SearchRoomContext = createContext();
 
-export const SearchRoom = () => {
+export const SearchRoom = ({ history }) => {
     const [searchOption, dispatchSearchOption] = useReducer(searchOptionReducer, initialSearchOptionState);
 
     return (
         <SearchRoomContext.Provider value={{ searchOption, dispatchSearchOption }}>
-            <SearchBar />
+            <SearchBar history={history} />
             <RoomList />
         </SearchRoomContext.Provider>
     );

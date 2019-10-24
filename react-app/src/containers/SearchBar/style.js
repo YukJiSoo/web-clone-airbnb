@@ -18,6 +18,14 @@ export default styled.header`
             position: absolute;
             top: 5rem;
         }
+
+        .Logout-Button {
+            position: absolute;
+            right: 2rem;
+
+            cursor: pointer;
+            outline: none;
+        }
     }
 
     .logo {
@@ -88,6 +96,11 @@ export default styled.header`
             .modal-dialog {
                 border-radius: 0;
                 box-shadow: none;
+            }
+
+            .Logout-Button {
+                position: static;
+                margin: 1rem;
             }
         }
 

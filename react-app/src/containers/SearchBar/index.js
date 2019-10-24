@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Style from './style';
 
 import SearchButton from './SearchButton';
@@ -7,8 +7,9 @@ import Modal from 'components/Modal';
 import { DateFilter, PersonnelFilter, PriceFilter } from './ModalBody';
 
 import { isMobile } from 'Constants';
+import { clearToken } from 'service/TokenManager';
 
-export default () => {
+export default ({ history }) => {
     const searchInfos = [
         {
             name: '날짜',
@@ -47,6 +48,11 @@ export default () => {
         setState(!state);
     };
 
+    const logout = () => {
+        clearToken();
+        history.push('/');
+    };
+
     const buttonList = searchStates.map((info, index) => (
         <li key={index}>
             <SearchButton
@@ -65,6 +71,9 @@ export default () => {
             <nav className="Search-Bar">
                 <ul>{buttonList}</ul>
             </nav>
+            <button className="Logout-Button" onClick={logout}>
+                로그아웃
+            </button>
             {isMobile() && searchStates.map(info => info.isClicked && <Modal body={info.modalBody} />)}
         </Style>
     );
