@@ -24,6 +24,7 @@ export default gql`
     input RoomsFilteringOptionInput {
         date: DateFilterInput
         personnel: PersonnelFilterInput
+        price: PriceFilterInput
     }
 
     input DateFilterInput {
@@ -35,6 +36,11 @@ export default gql`
         adult: Int!
         children: Int!
         infant: Int!
+    }
+
+    input PriceFilterInput {
+        startPrice: Int!
+        endPrice: Int!
     }
 
     input ReserveRoomInput {
