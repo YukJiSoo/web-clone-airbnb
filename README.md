@@ -28,10 +28,6 @@
 
 -   MySQL
 
-## Deploy
-
-http://101.101.162.177
-
 ## Insatll
 
 1. React + NginX server docker image 생성 후 실행
